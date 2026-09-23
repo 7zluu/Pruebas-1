@@ -29,7 +29,7 @@ end
 if v9 then
     error("Error getting actual data")
 end
-makefolder("KittyWare")
+makefolder("Ousa.ware")
 t1.value10 = table.insert
 local _ = table.find
 t1.value11 = table.remove
