@@ -1513,7 +1513,7 @@ function t1.value131(p107, p108, p109)
     local v385 = t1.value96(p107)
 
     value1({
-		Title = "KittyWare",
+		Title = "Ousa.ware",
 		Description = v384,
 		Image = v385
 	})
@@ -3571,6 +3571,6 @@ end)
 local value1 = t1.value1
 local v123 = "Please Join Our Discord Server! <font color=\"rgb(142,187,255)\">" .. t1.value9 .. "</font>"
 value1({
-	Title = "KittyWare",
+	Title = "Ousa.ware",
 	Description = v123
 })
