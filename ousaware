@@ -1,0 +1,3576 @@
+local t1 = {}
+local v2 = unpack or table.unpack
+if not game:IsLoaded() then
+    game.Loaded:Wait()
+end
+local self = setmetatable({}, {
+	__index = function(_, p2)
+    return game:GetService(p2)
+end
+})
+local v4 = loadstring(game:HttpGet("https://github.com/7zluu/Pruebas-1/raw/refs/heads/main/lib.lua"))()
+local v5 = loadstring(game:HttpGet("https://github.com/7zluu/Pruebas-1/raw/refs/heads/main/notify.lua"))()
+local v6 = game:HttpGet("https://github.com/7zluu/Pruebas-1/raw/refs/heads/main/data.json")
+t1.value1 = v5.Notify
+t1.value2 = self.VirtualInputManager
+t1.value3 = self.UserInputService
+t1.value4 = self.TeleportService
+local HttpService = self.HttpService
+t1.value5 = self.RunService
+t1.value6 = self.Lighting
+t1.value7 = self.Players
+t1.value8 = self.Stats.Network.ServerStatsItem["Data Ping"]
+local data = HttpService:JSONDecode(v6)
+local v9 = not data
+t1.value9 = "discord.gg/" .. data.invite
+if not v9 then
+    v9 = not data.version or not t1.value9
+end
+if v9 then
+    error("Error getting actual data")
+end
+makefolder("KittyWare")
+t1.value10 = table.insert
+local _ = table.find
+t1.value11 = table.remove
+t1.value12 = table.clear
+t1.value13 = workspace:WaitForChild("Map")
+t1.value14 = workspace:WaitForChild("Live")
+local Thrown = workspace:WaitForChild("Thrown")
+local Terrain = workspace:WaitForChild("Terrain")
+t1.value15 = workspace:WaitForChild("Cutscenes")
+t1.value16 = workspace.CurrentCamera
+t1.value17 = t1.value7.LocalPlayer
+t1.value18 = t1.value17.PlayerGui
+t1.value19 = t1.value17:GetMouse()
+t1.value20 = workspace.FallenPartsDestroyHeight
+t1.value21 = t1.value6:FindFirstChild("ColorCorrection") or Instance.new("ColorCorrectionEffect", t1.value6)
+t1.value21.Name = "ColorCorrection"
+t1.value22 = {
+	"Counter",
+	"AbsoluteImmortal",
+	"AtomicCounter",
+	"HunterCounter",
+	"UpFrames",
+	"Ragdoll",
+	"ForceField",
+	"CanBringUp"
+}
+t1.value23 = {
+	"Counter",
+	"HunterCounter",
+	"DoingEmote",
+	"CancelEmote",
+	"CancelEmote2",
+	"BeingLaunched",
+	"Ragdoll",
+	"Freeze",
+	"BarrageBind"
+}
+t1.value24 = {}
+t1.value25 = {}
+t1.value26 = {}
+t1.value27 = {}
+t1.value28 = {}
+t1.value29 = {
+	Garou = {
+		WaterTrail = "true",
+		["5"] = "false",
+		["3-2"] = "false",
+		["2-2"] = "false",
+		["1"] = "true",
+		Spinparticle2 = "true",
+		["4-2"] = "true",
+		["4-3"] = "true",
+		["6"] = "true",
+		["7"] = "true",
+		["8"] = "true",
+		["9"] = "true",
+		Line = "false",
+		Real = "false",
+		Real2 = "false",
+		AirTrail = "false",
+		ParticleEmitter = "false",
+		big = "false",
+		["4-4"] = "false",
+		Was = "false",
+		Blue = "true",
+		WaterTrailEnd = "false",
+		["1-1"] = "true",
+		["3-3"] = "true",
+		["9-2"] = "true",
+		["1-2"] = "true",
+		["10"] = "true",
+		Trail1 = "false"
+	}
+}
+t1.value30 = {
+	BodySmoke = true,
+	BodySmokez = true,
+	SmokeUpTwo = true,
+	SmokeUp = true,
+	UpSmoke = true,
+	SmokeBack = true,
+	GroundSmoke = true,
+	UpSmoke2 = true,
+	SmokeOne = true,
+	Push = true,
+	SmokeDown = true,
+	Dust = true,
+	Smoke = true,
+	Smoke3 = true,
+	SmokeyUp = true,
+	Smokey = true
+}
+local function v13(p3)
+    local t2 = {}
+
+    for _, v in ipairs(p3) do
+        t2[v] = true
+    end
+
+    return t2
+end
+v13(t1.value22)
+t1.value31 = v13({
+	"DoingEmote",
+	"CancelEmote",
+	"CancelEmote2",
+	"BeingLaunched",
+	"Freeze"
+})
+t1.value32 = v13(t1.value23)
+t1.value33 = v13({
+	"Shove",
+	"Normal Punch",
+	"Uppercut",
+	"Flowing Water",
+	"Lethal Whirlwind Stream",
+	"Hunter's Grasp",
+	"Doom Dive",
+	"Crowd Buster",
+	"Hammer Heel",
+	"Binding Cloth",
+	"Jet Dive",
+	"Blitz Shot",
+	"Ignition Burst",
+	"Flash Strike",
+	"Scatter",
+	"Explosive Shuriken",
+	"Homerun",
+	"Beatdown",
+	"Four Ball",
+	"Quick Slice",
+	"Atmos Cleave",
+	"Pinpoint Cut",
+	"Crushing Pull",
+	"Windstorm Fury",
+	"Stone Coffin",
+	"Expulsive Push",
+	"GoPush",
+	"Vanishing Kick",
+	"Whirlwind Drop",
+	"Head First",
+	"Weboom",
+	"Plasma Cannon",
+	"Trinity Tear",
+	"Twin Burst",
+	"TornadoBind"
+})
+t1.value34 = v13({
+	"Consecutive Punches",
+	"Machine Gun Blows",
+	"Bullet Barrage"
+})
+v13({
+	"Jet Dive",
+	"Blitz Shot",
+	"Ignition Burst",
+	"Flash Strike",
+	"Scatter",
+	"Homerun",
+	"Beatdown",
+	"Four Ball",
+	"Plasma Cannon",
+	"Weboom",
+	"Trinity Tear",
+	"Twin Burst",
+	"Atmos Cleave",
+	"Pinpoint Cut",
+	"Crushing Pull",
+	"Windstorm Fury",
+	"Stone Coffin",
+	"Expulsive Push",
+	"GoPush",
+	"Vanishing Kick",
+	"Whirlwind Drop",
+	"Head First"
+})
+v13({
+	"ShurikenProj",
+	"Trash Can"
+})
+t1.value35 = v13({
+	"Custom Cape",
+	"Guild Cape",
+	"Slinky",
+	"Ruler Cape",
+	"Webbed Cape",
+	"Warden Cape",
+	"Desert Cape",
+	"Divine Wheel",
+	"Spiky Cape",
+	"Fur Cape",
+	"Blood Scarf",
+	"Torn Headband",
+	"Headband",
+	"Bandage Wrap",
+	"Waist Sash",
+	"Leg Iron",
+	"Leg Iron",
+	"Worn Cape",
+	"Tattered Cape",
+	"Torn Cape",
+	"White Cape",
+	"Conqueror Cape",
+	"Jagged Cape",
+	"Royal Cape",
+	"White Scarf",
+	"Short Sash",
+	"Red Gloves",
+	"SpiralHolder",
+	"Long Sash",
+	"Bandages",
+	"Purple Scarf"
+})
+t1.value36 = v13({
+	"Gold Aura",
+	"Midnight Aura",
+	"Shadow Aura",
+	"Burning Aura",
+	"Crimson Aura",
+	"Graceful Aura",
+	"Glitch Aura",
+	"Colorful Aura",
+	"Error Aura",
+	"Stench Aura",
+	"Dark Aura",
+	"Lighting Aura",
+	"Ki Aura"
+})
+t1.value37 = {
+	Bald = "Saitama",
+	Hunter = "Garou",
+	Monster = "Red Garou",
+	Cyborg = "Genos",
+	Ninja = "Sonic",
+	Batter = "Metal Bat",
+	Blade = "Samurai",
+	Esper = "Tatsumaki",
+	Purple = "Siryu",
+	Tech = "Emperor"
+}
+t1.value38 = nil
+t1.value39 = nil
+t1.value40 = nil
+t1.value41 = nil
+t1.value42 = nil
+t1.value43 = nil
+t1.value44 = ""
+t1.value45 = nil
+t1.value46 = nil
+t1.value47 = nil
+t1.value48 = nil
+t1.value49 = nil
+t1.value50 = nil
+t1.value51 = nil
+t1.value52 = nil
+t1.value53 = t1.value17:GetAttribute("S_AutoUnequip")
+t1.value54 = {}
+local ViewportSize = t1.value16.ViewportSize
+t1.value55 = math.floor(ViewportSize.X / 2)
+t1.value56 = math.floor(ViewportSize.Y / 2)
+t1.value57 = Enum.KeyCode.Space
+t1.value58 = Enum.KeyCode.Q
+t1.value59 = Enum.KeyCode.W
+t1.value60 = Enum.KeyCode.S
+t1.value61 = Enum.KeyCode.D
+local _Enum = Enum
+t1.value62 = nil
+t1.value63 = _Enum.KeyCode.A
+t1.value64 = "10479335397"
+t1.value65 = "10480793962"
+t1.value66 = "10480796021"
+t1.value67 = "10503381238"
+t1.value68 = "13379003796"
+t1.value69 = "10491993682"
+t1.value70 = {
+	Goal = "LeftClick"
+}
+t1.value71 = {
+	Goal = "LeftClickRelease"
+}
+local S = Enum.KeyCode.S
+local Q = Enum.KeyCode.Q
+local W = Enum.KeyCode.W
+local Q2 = Enum.KeyCode.Q
+t1.value72 = {
+	Dash = W,
+	Key = Q2,
+	Goal = "KeyPress"
+}
+local F = Enum.KeyCode.F
+t1.value73 = {
+	Goal = "KeyPress",
+	Key = F
+}
+local F2 = Enum.KeyCode.F
+t1.value74 = {
+	Goal = "KeyRelease",
+	Key = F2
+}
+t1.value75 = 28
+t1.value76 = 18
+t1.value77 = 15
+t1.value78 = 9
+local t3 = {
+	Enabled = false,
+	DashPredict = false,
+	AutoM1 = false,
+	AutoCounter = false,
+	RotateChar = false,
+	RotateCam = false,
+	CharEasing = 0,
+	CamEasing = 0,
+	FOV = 180
+}
+local t4 = {
+	Precision = 0.25,
+	SecondFlick = 0.04,
+	Jump = true,
+	FirstFlickAngle = 0,
+	LegitJump = false
+}
+local t5 = {
+	Enabled = false,
+	Tech = "",
+	Loopv2 = t4,
+	LockonPrecision = 1,
+	SupaMethod = "RenderStepped",
+	LoopDashLooksUp = false
+}
+local t6 = {
+	FriendCheck = false,
+	NoDashEndLag = false,
+	StretchEnabled = false,
+	StretchValue = 1,
+	LockOnEnabled = false,
+	LockOnPrecision = 1,
+	TDSEnabled = false
+}
+local color3 = Color3.fromRGB(142, 187, 255)
+local t7 = {
+	Enabled = false,
+	Color = color3
+}
+local t8 = {
+	Enabled = false,
+	Text = "KITTYWARE"
+}
+local color3_2 = Color3.fromRGB(142, 187, 255)
+local t9 = {
+	Enabled = false,
+	Color = color3_2
+}
+local t10 = {
+	UltbarText = t8,
+	UltbarColor = t9
+}
+local color3_3 = Color3.new(0.454902, 0.137255, 0.141176)
+local color3_4 = Color3.new(0.364706, 0.564706, 1)
+local color3_5 = Color3.new(0.588235, 1, 0.27451)
+local color3_6 = Color3.new(0.635294, 0.4, 0.113725)
+local color3_7 = Color3.new(0.635294, 0.576471, 0.113725)
+local color3_8 = Color3.new(0.98039215686275, 1, 0.67843137254902)
+local t11 = {
+	NoSmoke = false,
+	NoRings = false,
+	NoNewLight = false,
+	NoCapes = false,
+	NoShadows = false,
+	NoAuras = false,
+	NoGarouC = false,
+	Headless = false,
+	FOV = 70,
+	EffectsColor = t7,
+	CustomUltbar = t10,
+	ESP = {
+		Enabled = false,
+		DeathCounterColor = color3_3,
+		NeutralColor = color3_4,
+		FriendColor = color3_5,
+		EnemyColor = color3_6,
+		UltColor = color3_7,
+		SaitamaUltColor = color3_8,
+		NoBillboards = false,
+		OutlineTransparency = 0.7,
+		DeathCounterESP = false,
+		SaitamaUltESP = false
+	}
+}
+local t12 = {
+	Enabled = false,
+	Delay = 0.05,
+	Type = "Straight"
+}
+local t13 = {
+	Enabled = false
+}
+local t14 = {
+	Enabled = false
+}
+local t15 = {
+	Enabled = false
+}
+local t16 = {
+	Enabled = false
+}
+local t17 = {
+	Enabled = false,
+	Tech = ""
+}
+local t18 = {
+	m1ResetEnabled = false,
+	EmoteDash = t12,
+	BackDashCancel1 = t13,
+	BackDashCancel2 = t14,
+	BackDashCancel3 = t15,
+	BackDashCancel4 = t16,
+	TechHelper = t17,
+	ExtraTechHelper = {
+		Enabled = false,
+		Tech = ""
+	}
+}
+local t19 = {
+	Target = "",
+	LoopFling = false
+}
+local t20 = {
+	Enabled = false,
+	OnlyOnKeybind = false,
+	Distance = 1
+}
+local t21 = {
+	Autoblock = t3,
+	AutoTech = t5,
+	Misc = t6,
+	Visuals = t11,
+	Macro = t18,
+	Rage = {
+		NoStun = false,
+		NoSlow = false,
+		NoFatigue = false,
+		AlwaysJump = false,
+		AutoDodge = false,
+		Fling = t19,
+		CustomFrontDash = t20,
+		CustomSideDash = {
+			Enabled = false,
+			OnlyOnKeybind = false,
+			Distance = 1,
+			Side = "",
+			RemoveInertia = false,
+			RMIDelay = 0.07,
+			Jump = false
+		}
+	}
+}
+t1.value79 = nil
+t1.value79 = t21
+function t1.value80(p4)
+    if p4 then
+        p4:Disconnect()
+    end
+end
+function t1.value81(p5)
+    if p5 then
+        for _, v in ipairs(p5) do
+            t1.value80(v)
+        end
+    end
+end
+function t1.value82(p6, p7, p8, p9)
+    local connection = p7[p8]:Connect(p9)
+
+    t1.value10(p6, connection)
+
+    return connection
+end
+function t1.value83(p10)
+    t1.value2:SendKeyEvent(true, p10, false, game)
+end
+function t1.value84(p11)
+    t1.value2:SendKeyEvent(false, p11, false, game)
+end
+function t1.value85(p12)
+    t1.value83(p12)
+    task.wait()
+    t1.value84(p12)
+end
+local function v50(p13)
+    t1.value83(p13)
+    task.wait()
+    t1.value84(p13)
+
+    if not t1.value53 then
+        task.wait()
+
+        local value2 = t1.value2
+        local _game = game
+
+        value2:SendMouseButtonEvent(t1.value55, t1.value56, 0, true, _game, 0)
+        task.wait()
+        t1.value2:SendMouseButtonEvent(t1.value55, t1.value56, 0, false, game, 0)
+    end
+end
+local function v51()
+    if not t1.value46 then
+        t1.value50:FireServer(t1.value72)
+
+        if not workspace:GetAttribute("NoDashCooldown") then
+            t1.value46 = true
+            task.delay(5, function()
+                t1.value46 = false
+            end)
+        end
+    end
+end
+function t1.value86(p14, p15)
+    local _ipairs = ipairs
+
+    if not p14 then
+        p14 = {}
+    end
+
+    for _, v172 in _ipairs(p14) do
+        local v173 = v172
+
+        if v172 then
+            v173 = v172.GetDescendants
+        end
+
+        if v173 then
+            for i, descendant in ipairs(v172:GetDescendants()) do
+                p15(i, descendant)
+            end
+        end
+    end
+end
+function t1.value87(p16)
+    for _, v in ipairs(t1.value51:GetPlayingAnimationTracks()) do
+        if v.Animation and v.Animation.AnimationId == "rbxassetid://" .. tostring(p16) then
+            v:Stop()
+        end
+    end
+end
+function t1.value88(p17, p18)
+    local v187 = if p18 then p18:WaitForChild("Animator") else t1.value51
+    local GetPlayingAnimationTracks = v187.GetPlayingAnimationTracks
+
+    for _, v in ipairs(GetPlayingAnimationTracks(v187)) do
+        if v.Animation and v.Animation.AnimationId == "rbxassetid://" .. tostring(p17) then
+            return true
+        end
+    end
+
+    return false
+end
+function t1.value89(p19, p20)
+    if t1.value28[p19.Name] == "Friend" then
+        if p20 then
+            if t1.value79.Misc.FriendCheck then
+                return true
+            end
+
+            return false
+        end
+
+        return true
+    end
+
+    return false
+end
+function t1.value90(p21)
+    if p21:IsFriendsWithAsync(t1.value17.userId) then
+        t1.value28[p21.Name] = "Friend"
+
+        return
+    end
+
+    t1.value28[p21.Name] = "Neutral"
+end
+t1.value91 = nil
+function t1.value91(p22, p23, p24)
+    t1.value16.CFrame = CFrame.new(p22) * CFrame.Angles(0, p23, 0) * CFrame.Angles(p24, 0, 0)
+end
+function t1.value92(p25, p26, p27, p28)
+    local v237 = p28 or 1
+    local value16CFrame = t1.value16.CFrame
+    local value16CFramePosition = value16CFrame.Position
+    local v240
+    local v242, v245
+    if p26 then
+        local Unit
+
+        if p27 then
+            Unit = (p26 - t1.value49.Position).Unit
+            v242 = math.atan2(-t1.value49.CFrame.LookVector.X, -t1.value49.CFrame.LookVector.Z)
+        else
+            local v243 = value16CFramePosition
+
+            if t1.value3.MouseBehavior == Enum.MouseBehavior.LockCenter then
+                v243 -= value16CFrame.RightVector * 1.75
+            end
+
+            Unit = (p26 - v243).Unit
+            v240 = math.asin(Unit.Y)
+
+            local LookVector = value16CFrame.LookVector
+
+            v242 = math.atan2(-LookVector.X, -LookVector.Z)
+        end
+
+        v245 = math.atan2(-Unit.X, -Unit.Z)
+    else
+        local LookVector
+
+        if p27 then
+            LookVector = t1.value49.CFrame.LookVector
+        else
+            LookVector = value16CFrame.LookVector
+            v240 = math.asin(LookVector.Y)
+        end
+
+        v242 = math.atan2(-LookVector.X, -LookVector.Z)
+        v245 = v242 + math.rad(p25)
+    end
+    local v247 = v242 + math.atan2(math.sin(v245 - v242), (math.cos(v245 - v242))) * v237
+    if p27 then
+        t1.value48.AutoRotate = false
+        t1.value49.CFrame = CFrame.new(t1.value49.Position) * CFrame.Angles(0, v247, 0)
+
+        return
+    end
+    t1.value91(value16CFramePosition, v247, v240)
+end
+function t1.value93(p29, p30, p31)
+    local v211 = math.rad(p29)
+    local timestamp = tick()
+    local LookVector = t1.value16.CFrame.LookVector
+    local v214 = math.atan2(-LookVector.X, -LookVector.Z)
+    local v215 = v214 + v211
+    local connection
+    connection = t1.value5.RenderStepped:Connect(function()
+        local timestamp2 = tick()
+        local _math = math
+        local v561 = timestamp2 - timestamp
+        local v562 = _math.clamp(v561 / p30, 0, 1)
+        local v563 = v562 * v562 * (3 - 2 * v562)
+        local value16CFrame = t1.value16.CFrame
+        local value16CFramePosition = value16CFrame.Position
+        local v566 = math.asin(value16CFrame.LookVector.Y)
+        local v567 = v214 + (v215 - v214) * v563
+
+        if p31 then
+            t1.value48.AutoRotate = false
+            t1.value49.CFrame = CFrame.new(t1.value49.Position) * CFrame.Angles(0, v567, 0)
+        else
+            t1.value91(value16CFramePosition, v567, v566)
+        end
+
+        if v562 >= 1 then
+            t1.value80(connection)
+        end
+    end)
+end
+function t1.value94(p32, p33)
+    local timestamp = tick()
+    local value16CFrame = t1.value16.CFrame
+    local value16CFramePosition = value16CFrame.Position
+    local LookVector = value16CFrame.LookVector
+    local v227 = math.atan2(-LookVector.X, -LookVector.Z)
+    local v228 = math.asin(LookVector.Y)
+    local Unit = (p32 - value16CFramePosition).Unit
+    local v230 = math.atan2(-Unit.X, -Unit.Z)
+    local v231 = math.atan2(math.sin(v230 - v227), (math.cos(v230 - v227)))
+    local connection
+    connection = t1.value5.RenderStepped:Connect(function()
+        local v568 = math.clamp((tick() - timestamp) / p33, 0, 1)
+        local v569 = v568 * v568 * (3 - v568 * 2)
+        local CFramePosition = t1.value16.CFrame.Position
+        local v571 = v227 + v231 * v569
+
+        t1.value91(CFramePosition, v571, v228)
+
+        if v568 >= 1 then
+            t1.value80(connection)
+        end
+    end)
+end
+function t1.value95(p34)
+    for i = #t1.value54, 2, -1 do
+        local v179 = t1.value54[i]
+        local v180 = t1.value54[i - 1]
+
+        if p34 >= v180.time and p34 <= v179.time then
+            local v181 = (p34 - v180.time) / (v179.time - v180.time)
+
+            return v180.cf:Lerp(v179.cf, v181)
+        end
+    end
+
+    return t1.value54[1] and t1.value54[1].cf
+end
+function t1.value96(p35)
+    return t1.value7:GetUserThumbnailAsync(p35.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420)
+end
+function t1.value97(p36)
+    local v218 = math.floor(p36.R * 255)
+    local v219 = math.floor(p36.G * 255)
+    local v220 = math.floor(p36.B * 255)
+
+    return string.format("#%02X%02X%02X", v218, v219, v220)
+end
+function t1.value98(p37, p38)
+    if not p37 then
+        return false
+    end
+
+    local v148 = p38 or {}
+    local GetChildren = p37.GetChildren
+
+    for _, v in pairs(GetChildren(p37)) do
+        if v148[v.Name] then
+            return false
+        end
+    end
+
+    return true
+end
+function t1.value99(p39, p40, p41)
+    if not t1.value47.PrimaryPart then
+        return
+    end
+
+    t1.value49.CFrame = CFrame.new(p39.Position) * p40 * p41
+    t1.value47:SetPrimaryPartCFrame(CFrame.new(p39.Position) * p40 * p41)
+    t1.value49.Velocity = Vector3.new(90000000, 900000000, 90000000)
+    t1.value49.RotVelocity = Vector3.new(900000000, 900000000, 900000000)
+end
+function t1.value100(p42)
+    local HumanoidRootPart = p42:FindFirstChild("HumanoidRootPart")
+    local v259 = not HumanoidRootPart
+    local Humanoid = p42:FindFirstChild("Humanoid")
+
+    if not v259 then
+        v259 = not Humanoid
+    end
+
+    if v259 then
+        return
+    end
+
+    local BodyVelocity = Instance.new("BodyVelocity")
+
+    BodyVelocity.Parent = t1.value49
+    BodyVelocity.Velocity = Vector3.new(0, 0, 0)
+    BodyVelocity.MaxForce = Vector3.new(9000000000, 9000000000, 9000000000)
+
+    local timestamp = tick()
+    local n1 = 0
+    local n2 = 0
+    local value49CFrame = t1.value49.CFrame
+
+    workspace.FallenPartsDestroyHeight = (0/0)
+
+    repeat
+        n2 += 1
+
+        if n2 > 1 then
+            n2 = 0
+        end
+
+        if HumanoidRootPart.Velocity.Magnitude < 50 then
+            n1 += 100
+
+            if n2 == 1 then
+                t1.value99(HumanoidRootPart, CFrame.new(0, 1.5, 0) + Humanoid.MoveDirection * HumanoidRootPart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(n1), 0, 0))
+                t1.value99(HumanoidRootPart, CFrame.new(0, 1.5, 0) + Humanoid.MoveDirection, CFrame.Angles(math.rad(n1), 0, 0))
+            else
+                t1.value99(HumanoidRootPart, CFrame.new(0, -1.5, 0) + Humanoid.MoveDirection * HumanoidRootPart.Velocity.Magnitude / 1.25, CFrame.Angles(math.rad(n1), 0, 0))
+                t1.value99(HumanoidRootPart, CFrame.new(0, -1.5, 0) + Humanoid.MoveDirection, CFrame.Angles(math.rad(n1), 0, 0))
+            end
+        elseif n2 == 1 then
+            t1.value99(HumanoidRootPart, CFrame.new(0, 1.5, Humanoid.WalkSpeed), CFrame.Angles(1.5707963267948966, 0, 0))
+            t1.value99(HumanoidRootPart, CFrame.new(0, -1.5, 0), CFrame.Angles(1.5707963267948966, 0, 0))
+        else
+            t1.value99(HumanoidRootPart, CFrame.new(0, -1.5, -Humanoid.WalkSpeed), CFrame.Angles(0, 0, 0))
+            t1.value99(HumanoidRootPart, CFrame.new(0, -1.5, 0), CFrame.Angles(0, 0, 0))
+        end
+
+        task.wait()
+    until timestamp + 2 < tick()
+
+    BodyVelocity:Destroy()
+
+    repeat
+        t1.value49.CFrame = value49CFrame * CFrame.new(0, 0.5, 0)
+        t1.value47:SetPrimaryPartCFrame(value49CFrame * CFrame.new(0, 0.5, 0))
+
+        for _, child in pairs(t1.value47:GetChildren()) do
+            if child:IsA("BasePart") then
+                local vector3 = Vector3.new()
+                local vector3_2 = Vector3.new()
+
+                child.Velocity = vector3
+                child.RotVelocity = vector3_2
+            end
+        end
+
+        task.wait()
+    until (t1.value49.Position - value49CFrame.Position).Magnitude < 25
+
+    workspace.FallenPartsDestroyHeight = t1.value20
+end
+function t1.value101(p43, p44)
+    task.wait(p44)
+
+    if t1.value88(t1.value69, t1.value48) then
+        return
+    end
+
+    t1.value49.AssemblyLinearVelocity = Vector3.new(t1.value49.AssemblyLinearVelocity.X * p43, t1.value49.AssemblyLinearVelocity.Y, t1.value49.AssemblyLinearVelocity.Z * p43)
+end
+function t1.value102(p45)
+    local value49Position = t1.value49.Position
+    local p45Position = p45.Position
+
+    if (Vector3.new(value49Position.X, 0, value49Position.Z) - Vector3.new(p45Position.X, 0, p45Position.Z)).Magnitude <= 0.2 and value49Position.Y < p45Position.Y then
+        return true
+    end
+
+    return false
+end
+function t1.value103(p46)
+    local v205 = p46 or 1
+
+    return t1.value8:GetValue() / v205
+end
+function t1.value104(p47)
+    local v278 = p47 + (t1.value103() - 50) * -0.0003846
+
+    return {
+		v278,
+		p47 - v278
+	}
+end
+function t1.value105(p48)
+    if not t1.value49 or not p48 then
+        return nil
+    end
+
+    local LookVector = t1.value49.CFrame.LookVector
+    local Unit = Vector3.new(LookVector.X, 0, LookVector.Z).Unit
+    local v202 = p48.Position - t1.value49.Position
+    local vector3 = Vector3.new(v202.X, 0, v202.Z)
+
+    if vector3.Magnitude == 0 then
+        return 0
+    end
+
+    return (math.deg((math.acos((math.clamp(Unit:Dot(vector3.Unit), -1, 1))))))
+end
+function t1.value106(p49, p50)
+    local v281 = t1.value105(p49)
+
+    if v281 == nil then
+        return false
+    end
+
+    return v281 <= p50 / 2
+end
+function t1.value107(p51, p52)
+    if p52:FindFirstChild("Counter") then
+        return t1.value79.Visuals.ESP.DeathCounterColor
+    end
+
+    if p52:GetAttribute("Ulted") then
+        if p52:GetAttribute("Character") == "Bald" then
+            return t1.value79.Visuals.ESP.SaitamaUltColor
+        end
+
+        return t1.value79.Visuals.ESP.UltColor
+    end
+
+    if t1.value89(p51, false) then
+        return t1.value79.Visuals.ESP.FriendColor
+    end
+
+    if t1.value28[p51.Name] == "Enemy" then
+        return t1.value79.Visuals.ESP.EnemyColor
+    end
+
+    return t1.value79.Visuals.ESP.NeutralColor
+end
+function t1.value108()
+    return (t1.value18:WaitForChild("Hotbar"):WaitForChild("Backpack"):WaitForChild("Hotbar"))
+end
+function t1.value109()
+    local MagicHealth = t1.value18:WaitForChild("Bar"):WaitForChild("MagicHealth")
+    local Bar = MagicHealth:WaitForChild("Health"):WaitForChild("Bar"):WaitForChild("Bar")
+    local TextLabel = MagicHealth:WaitForChild("TextLabel")
+    local v302 = t1.value108()
+
+    t1.value81(t1.value24)
+
+    for i = 1, 4 do
+        local connection = v302:WaitForChild(i):WaitForChild("Base").ChildAdded:Connect(function(child)
+            if child.Name == "Cooldown" then
+                if t1.value79.Visuals.CustomUltbar.UltbarColor.Enabled then
+                    child.BackgroundColor3 = t1.value79.Visuals.CustomUltbar.UltbarColor.Color
+
+                    return
+                end
+
+                child.BackgroundColor3 = Color3.fromRGB(255, 87, 87)
+            end
+        end)
+
+        t1.value10(t1.value24, connection)
+    end
+
+    if t1.value79.Visuals.CustomUltbar.UltbarText.Enabled then
+        TextLabel.Text = t1.value79.Visuals.CustomUltbar.UltbarText.Text
+    else
+        TextLabel.Text = t1.value47:GetAttribute("UltimateName") or "Other"
+    end
+
+    if t1.value79.Visuals.CustomUltbar.UltbarColor.Enabled then
+        Bar.ImageColor3 = t1.value79.Visuals.CustomUltbar.UltbarColor.Color
+
+        return
+    end
+
+    Bar.ImageColor3 = Color3.fromRGB(255, 87, 87)
+end
+function t1.value110(p53, p54, p55)
+    local ESPEnabled = t1.value79.Visuals.ESP.Enabled
+
+    if not ESPEnabled then
+        ESPEnabled = (t1.value79.Visuals.ESP.DeathCounterESP or t1.value79.Visuals.ESP.SaitamaUltESP) and p55
+    end
+
+    if ESPEnabled then
+        local Head = p54:FindFirstChild("Head")
+        local ESP = p54:FindFirstChild("ESP")
+        local v311 = t1.value107(p53, p54)
+        local Highlight = p54:FindFirstChild("Highlight")
+
+        if Highlight then
+            task.defer(Highlight.Destroy, Highlight)
+        end
+
+        if not ESP then
+            ESP = Instance.new("Highlight")
+        end
+
+        ESP.Name = "ESP"
+        ESP.FillTransparency = t1.value79.Visuals.ESP.OutlineTransparency
+        ESP.FillColor = v311
+        ESP.OutlineTransparency = 1
+        ESP.Parent = p54
+
+        if not Head or t1.value79.Visuals.ESP.NoBillboards then
+            return
+        end
+
+        local v313 = Head:FindFirstChild("CheatGui") or Instance.new("BillboardGui", Head)
+        local v314 = v313:FindFirstChild("TextLabel") or Instance.new("TextLabel", v313)
+
+        v313.Name = "CheatGui"
+        v313.Size = UDim2.fromScale(10, 2)
+        v313.StudsOffset = Vector3.new(0, 4, 0)
+        v314.Size = UDim2.fromScale(1, 1)
+        v314.TextScaled = true
+        v314.Font = Enum.Font.RobotoMono
+        v314.TextColor3 = v311
+        v314.BackgroundTransparency = 1
+        v314.Text = (t1.value37[p54:GetAttribute("Character")] or "Other") .. " " .. math.floor(p53:GetAttribute("Ultimate") or 0) .. "% Ult \n" .. p53.Name
+    end
+end
+function t1.value111(p56, _, p58)
+    local ESP = p56:FindFirstChild("ESP")
+    local v164 = ESP
+    local Head = p56:FindFirstChild("Head")
+
+    if ESP then
+        v164 = not p58
+    end
+
+    if v164 then
+        ESP:Destroy()
+    end
+
+    if Head then
+        local CheatGui = Head:FindFirstChild("CheatGui")
+
+        if CheatGui then
+            CheatGui:Destroy()
+        end
+    end
+end
+function t1.value112(p59, p60)
+    for _, child in pairs(t1.value7:GetChildren()) do
+        if child ~= t1.value17 then
+            local Character = child.Character
+
+            if Character then
+                if p59 then
+                    t1.value111(Character, child, p60)
+                else
+                    t1.value110(child, Character)
+                end
+            end
+        end
+    end
+end
+function t1.value113(p61, p62)
+    if p61 then
+        for k, v in pairs(t1.value27) do
+            k.Material = v
+        end
+
+        t1.value27 = {}
+        t1.value86({
+			t1.value15,
+			t1.value13
+		}, function(_, p64)
+            if p64:IsA("BasePart") or p64:IsA("UnionOperation") then
+                t1.value27[p64] = p64.Material
+            end
+        end)
+
+        for k, v in pairs(t1.value27) do
+            local v288 = k
+
+            if p62 then
+                v288.Material = Enum.Material.Plastic
+            else
+                v288.Material = v
+            end
+        end
+
+        return
+    end
+
+    for k, v in pairs(t1.value27) do
+        local v291 = k
+
+        if p62 then
+            v291.Material = Enum.Material.Plastic
+        else
+            v291.Material = v
+        end
+    end
+end
+function t1.value114(p65, p66, p67, p68, p69)
+    local connection
+    connection = t1.value5[p65]:Connect(function()
+        local v580 = not p67
+
+        if not v580 then
+            v580 = p67:FindFirstChild("BeingLaunched")
+
+            if not v580 then
+                v580 = not p67:FindFirstChild("Ragdoll")
+
+                if not v580 then
+                    v580 = p68.Health <= 0
+
+                    if not v580 then
+                        v580 = t1.value48.Health <= 0 or not t1.value88(t1.value64)
+                    end
+                end
+            end
+        end
+
+        if v580 then
+            t1.value52 = false
+            t1.value80(connection)
+
+            return
+        end
+
+        p69()
+    end)
+    t1.value52 = false
+    task.wait(p66)
+    t1.value80(connection)
+end
+function t1.value115(p70)
+    t1.value52 = true
+    v51()
+    task.wait(t1.value103(1000) + 0.05 + (p70 or 0))
+end
+function t1.value116(p71, p72, p73)
+    local cFrame
+    t1.value115()
+    t1.value92(90, nil, true)
+    t1.value93(270, 0.3, true)
+    task.wait(0.3)
+    t1.value114("Heartbeat", 0.4, p71, p73, function()
+        if cFrame or t1.value102(p72) then
+            if not cFrame then
+                if t1.value79.AutoTech.LoopDashLooksUp then
+                    cFrame = CFrame.lookAt(t1.value49.Position, Vector3.new(t1.value49.Position.X + 1.5, t1.value49.Position.Y + 1.5, t1.value49.Position.Z))
+                else
+                    cFrame = t1.value49.CFrame
+                end
+            end
+
+            t1.value47:PivotTo(cFrame)
+
+            return
+        end
+
+        t1.value92(nil, p72.Position, true)
+    end)
+end
+function t1.value117(p74, p75, p76)
+    if t1.value79.AutoTech.Loopv2.Jump then
+        t1.value49.AssemblyLinearVelocity = Vector3.new(t1.value49.AssemblyLinearVelocity.X, 50, t1.value49.AssemblyLinearVelocity.Z)
+    end
+
+    t1.value52 = true
+    t1.value92(t1.value79.AutoTech.Loopv2.FirstFlickAngle, nil, true)
+    t1.value115(t1.value79.AutoTech.Loopv2.SecondFlick)
+    t1.value114("Heartbeat", 0.4, p74, p76, function()
+        t1.value92(nil, p75.Position, true, t1.value79.AutoTech.Loopv2.Precision)
+    end)
+end
+function t1.value118(p77, p78, p79)
+    t1.value115()
+    t1.value114("Heartbeat", 0.7, p77, p79, function()
+        t1.value92(nil, p78.Position, true, t1.value79.AutoTech.LockonPrecision)
+    end)
+end
+function t1.value119(p80, p81, p82)
+    t1.value115()
+    t1.value114("Heartbeat", 0.4, p80, p82, function()
+        local v582 = p81.Position - Vector3.new(0, 3, 2)
+        local cFrame = CFrame.new(v582, p81.Position)
+
+        t1.value47:PivotTo(cFrame)
+    end)
+end
+function t1.value120(p83, p84, p85)
+    t1.value115()
+
+    local v344 = p84.CFrame:PointToObjectSpace(t1.value49.Position)
+
+    t1.value114(t1.value79.AutoTech.SupaMethod, 0.3, p83, p85, function()
+        local p84Position = p84.Position
+        local v585 = p84.CFrame:PointToWorldSpace(v344)
+
+        t1.value47:PivotTo(CFrame.lookAt(v585, Vector3.new(p84Position.X, v585.Y + 1.5, p84Position.Z), Vector3.new(0, 1, 0)))
+    end)
+end
+local function v52(p86)
+    t1.value47 = p86
+    t1.value48 = t1.value47:WaitForChild("Humanoid")
+    t1.value49 = t1.value47:WaitForChild("HumanoidRootPart")
+    phead = t1.value47:WaitForChild("Head")
+    ptorso = t1.value47:WaitForChild("Torso")
+    pleftArm = t1.value47:WaitForChild("Left Arm")
+    prightArm = t1.value47:WaitForChild("Right Arm")
+    pleftLeg = t1.value47:WaitForChild("Left Leg")
+    prightLeg = t1.value47:WaitForChild("Right Leg")
+    t1.value47:WaitForChild("Communicate")
+    t1.value51 = t1.value48:WaitForChild("Animator")
+
+    if not t1.value37[p86:GetAttribute("Character")] then
+    end
+
+    workspace.CurrentCamera.FieldOfView = t1.value79.Visuals.FOV
+    t1.value12(t1.value54)
+    t1.value109()
+
+    if t1.value79.Visuals.Headless then
+        phead.Transparency = 1
+    end
+
+    t1.value51.AnimationPlayed:Connect(function(animation)
+        local Animation = animation.Animation
+
+        if Animation.AnimationId == "rbxassetid://" .. t1.value67 or Animation.AnimationId == "rbxassetid://" .. t1.value68 then
+            local LastM1Hitted = t1.value47:GetAttribute("LastM1Hitted")
+
+            if not LastM1Hitted then
+                return
+            end
+
+            local value14 = t1.value14
+            local t22 = { LastM1Hitted:match("^(.-);;") }
+            local v591 = value14:FindFirstChild(v2(t22))
+
+            if not v591 then
+                return
+            end
+
+            local HumanoidRootPart = v591:FindFirstChild("HumanoidRootPart")
+            local v593 = not HumanoidRootPart
+            local Humanoid = v591:FindFirstChild("Humanoid")
+
+            if not v593 then
+                v593 = not Humanoid
+            end
+
+            if v593 then
+                return
+            end
+
+            local Magnitude = (t1.value49.Position - HumanoidRootPart.Position).Magnitude
+
+            task.wait(0.38 - t1.value103(1000))
+
+            local v596 = Magnitude <= 20 and (t1.value79.AutoTech.Enabled and t1.value47:FindFirstChild("RecentM1Hit"))
+
+            if v596 then
+                v596 = not t1.value46
+            end
+
+            if v596 then
+                local Tech = t1.value79.AutoTech.Tech
+
+                if Tech == "Supa" then
+                    t1.value120(v591, HumanoidRootPart, Humanoid)
+
+                    return
+                end
+
+                if Tech == "Lock On Dash" then
+                    t1.value118(v591, HumanoidRootPart, Humanoid)
+
+                    return
+                end
+
+                if Tech == "Loop Dash" then
+                    t1.value116(v591, HumanoidRootPart, Humanoid)
+
+                    return
+                end
+
+                if Tech == "Kiba" then
+                    t1.value119(v591, HumanoidRootPart, Humanoid)
+
+                    return
+                end
+
+                if Tech == "Loop Dash v2" then
+                    t1.value117(v591, HumanoidRootPart, Humanoid)
+                end
+            end
+        end
+    end)
+    t1.value48:GetPropertyChangedSignal("JumpPower"):Connect(function()
+        local NoFatigue = t1.value79.Rage.NoFatigue
+
+        if NoFatigue then
+            NoFatigue = not t1.value47:FindFirstChild("NoJump") and t1.value98(t1.value47, t1.value23)
+        end
+
+        if not NoFatigue then
+            NoFatigue = t1.value79.Rage.AlwaysJump
+        end
+
+        if NoFatigue then
+            t1.value48.JumpPower = 50
+        end
+    end)
+    task.wait(0.5)
+    counterTool = t1.value17.Backpack:FindFirstChild("Prey's Peril") or t1.value17.Backpack:FindFirstChild("Split Second Counter")
+end
+function t1.value121(p87, p88, p89)
+    local v275 = p89 or 0
+    local connection
+    connection = t1.value5.Heartbeat:Connect(function(dt)
+        local v573 = not p87.Parent
+
+        if not v573 then
+            v573 = not t1.value49.Parent
+
+            if not v573 then
+                v573 = p88.Health <= 0 or t1.value48.Health <= 0
+            end
+        end
+
+        if v573 then
+            t1.value80(connection)
+
+            return
+        end
+
+        if t1.value98(t1.value49.Parent, t1.value23) then
+            t1.value48.AutoRotate = false
+
+            local value49CFrame = t1.value49.CFrame
+            local vector3 = Vector3.new(p87.Position.X, value49CFrame.Position.Y, p87.Position.Z)
+            local cFrame = CFrame.new(value49CFrame.Position, vector3)
+
+            if v275 <= 0 then
+                t1.value49.CFrame = cFrame
+
+                return
+            end
+
+            local v577 = math.clamp(dt / v275, 0, 1)
+
+            t1.value49.CFrame = value49CFrame:Lerp(cFrame, v577)
+        end
+    end)
+    t1.value10(t1.value24, connection)
+
+    return connection
+end
+function t1.value122()
+    if not t1.value45 then
+        t1.value45 = true
+        t1.value50:FireServer(t1.value73)
+    end
+end
+function t1.value123()
+    if t1.value45 then
+        t1.value50:FireServer(t1.value74)
+    end
+end
+local function v53(p90, p91, p92)
+    if t1.value47:FindFirstChild("Counter") then
+        return
+    end
+    t1.value122()
+    local v357
+    if t1.value79.Autoblock.RotateChar then
+        v357 = t1.value121(p91, p92, t1.value79.Autoblock.CharEasing)
+    end
+    if t1.value79.Autoblock.RotateCam then
+        t1.value94(p91.Position, t1.value79.Autoblock.CamEasing)
+    end
+    task.wait(p90)
+    t1.value80(v357)
+    t1.value123()
+end
+t1.value124 = nil
+function t1.value124()
+    task.wait()
+    t1.value50:FireServer(t1.value70)
+    task.wait()
+    t1.value50:FireServer(t1.value71)
+    task.wait()
+end
+function t1.value125()
+    t1.value83(t1.value57)
+    task.wait(0.01)
+    t1.value124()
+    t1.value84(t1.value57)
+end
+function t1.value126(p93, p94, _)
+    local p93Parent = p93.Parent
+
+    if p93Parent then
+        p93Parent = t1.value98(p93.Parent, t1.value22) and not t1.value47:FindFirstChild("CanBringUp")
+    end
+
+    if p93Parent then
+        local v367
+        if t1.value79.Autoblock.RotateChar then
+            v367 = t1.value121(p93, p94, t1.value79.Autoblock.CharEasing)
+        end
+        if t1.value79.Autoblock.RotateCam then
+            t1.value94(p93.Position, t1.value79.Autoblock.CamEasing)
+        end
+        t1.value124()
+        task.wait(0.1)
+        t1.value80(v367)
+    end
+end
+function t1.value127(p96)
+    local AssemblyLinearVelocity = p96.AssemblyLinearVelocity
+
+    if AssemblyLinearVelocity.Magnitude < 0.1 then
+        return
+    end
+
+    local Unit = (t1.value49.Position - p96.Position).Unit
+
+    return AssemblyLinearVelocity.Unit:Dot(Unit) > 0.7
+end
+function t1.value128(p97, p98, p99)
+    local Magnitude = (t1.value49.Position - p97.Position).Magnitude
+
+    v53(t1.value104(0.25)[1], p97, p98)
+
+    local v372 = not t1.value79.Autoblock.AutoM1
+
+    if not v372 then
+        v372 = Magnitude > t1.value78
+
+        if v372 then
+            v372 = not (Magnitude <= t1.value77) and t1.value127(p97)
+        end
+    end
+
+    if v372 then
+        v372 = not p99
+    end
+
+    if v372 then
+        return
+    end
+
+    t1.value126(p97, p98)
+end
+function t1.value129(p100, p101, p102, _)
+    local v377 = t1.value121(p100, p101, t1.value79.Autoblock.CharEasing)
+    local connection
+    local timestamp = tick()
+    connection = t1.value5.Heartbeat:Connect(function()
+        t1.value122()
+
+        local timestamp3 = tick()
+        local _math = math
+        local v601 = timestamp3 - timestamp
+        local v602 = _math.clamp(v601 / 0.1, 0, 1)
+
+        if p102:FindFirstChild("NoBlock") or (t1.value49.Position - p100.Position).Magnitude >= t1.value76 + 5 then
+            t1.value80(v377)
+            t1.value80(connection)
+            t1.value123()
+
+            if t1.value79.Autoblock.AutoM1 and (t1.value49.Position - p100.Position).Magnitude <= t1.value78 then
+                t1.value126(p100, p101)
+            end
+        end
+
+        if v602 >= 1 and not p102:FindFirstChild("Slowed") then
+            t1.value80(v377)
+
+            local v603 = connection
+
+            t1.value80(v603)
+            t1.value123()
+        end
+    end)
+end
+function t1.value130(_, _, p106)
+    local v318 = t1.value108()
+
+    if not p106 then
+        p106 = v318:WaitForChild(4):WaitForChild("Base"):FindFirstChild("Cooldown")
+
+        if not p106 then
+            p106 = not counterTool or not t1.value79.Autoblock.AutoCounter
+        end
+    end
+
+    if p106 then
+        return true
+    end
+
+    if counterTool then
+        local value50 = t1.value50
+        local FireServer = value50.FireServer
+        local _counterTool = counterTool
+        local counterToolName = counterTool.Name
+
+        FireServer(value50, {
+			IsAutoActivate = true,
+			Goal = "Console Move",
+			Tool = _counterTool,
+			ToolName = counterToolName
+		})
+
+        return false
+    end
+
+    return true
+end
+function t1.value131(p107, p108, p109)
+    t1.value110(p107, p108, true)
+
+    local value1 = t1.value1
+    local v384 = string.format(p107.DisplayName .. " used <font color=\"%s\">Death Counter!</font>", t1.value97(t1.value79.Visuals.ESP.DeathCounterColor))
+    local v385 = t1.value96(p107)
+
+    value1({
+		Title = "KittyWare",
+		Description = v384,
+		Image = v385
+	})
+    p109.AncestryChanged:Connect(function(_, parent)
+        if not parent then
+            local v606 = t1.value79.Visuals.ESP.DeathCounterESP or t1.value79.Visuals.ESP.SaitamaUltESP
+
+            if v606 then
+                v606 = not t1.value79.Visuals.ESP.Enabled
+            end
+
+            if v606 then
+                t1.value111(p108, p107, false)
+            else
+                t1.value110(p107, p108, true)
+            end
+
+            t1.value80(nil)
+        end
+    end)
+end
+function t1.value132(p111)
+    local p111Name = p111.Name
+    local v250 = t1.value29[t1.value44]
+
+    if p111:IsA("PointLight") or (p111:IsA("SpotLight") or p111:IsA("SurfaceLight") and t1.value79.Visuals.NoNewLight) then
+        p111.Enabled = false
+
+        return
+    end
+
+    local v251 = t1.value30[p111Name] and t1.value79.Visuals.NoSmoke
+
+    if not v251 then
+        v251 = p111Name == "Clone_Rig" and t1.value79.Visuals.NoGarouC
+
+        if not v251 then
+            v251 = t1.value36[p111Name] or p111Name == "CosmeticAuras"
+
+            if v251 then
+                v251 = t1.value79.Visuals.NoAuras
+            end
+
+            if not v251 then
+                v251 = t1.value35[p111Name] and t1.value79.Visuals.NoCapes
+
+                if not v251 then
+                    v251 = p111Name == "Ring" and t1.value79.Visuals.NoRings
+                end
+            end
+        end
+    end
+
+    if v251 then
+        task.defer(p111.Destroy, p111)
+
+        return
+    end
+
+    if v250 then
+        local p111Parent = p111.Parent
+        local t1value17Name = p111:FindFirstAncestor(t1.value17.Name)
+
+        if not t1value17Name and p111Parent then
+            t1value17Name = p111Parent:FindFirstAncestor(t1.value17.Name)
+        end
+
+        local v254 = not t1value17Name
+
+        if v254 then
+            v254 = p111Parent
+
+            if p111Parent then
+                v254 = p111Parent.Parent
+            end
+        end
+
+        if v254 then
+            t1value17Name = p111Parent.Parent:FindFirstAncestor(t1.value17.Name)
+        end
+
+        local v255 = v250[p111Name]
+        local v256 = v255 and t1.value79.Visuals.EffectsColor.Enabled
+
+        if v256 then
+            v256 = v255 == "true" and t1value17Name
+
+            if not v256 then
+                v256 = v255 == "false"
+            end
+
+            if v256 then
+                v256 = p111:IsA("ParticleEmitter")
+
+                if not v256 then
+                    v256 = p111:IsA("Trail") or p111:IsA("Beam")
+                end
+            end
+        end
+
+        if v256 then
+            p111.Color = ColorSequence.new(t1.value79.Visuals.EffectsColor.Color)
+        end
+    end
+end
+local function v54(p112)
+    if p112 then
+        for _, player in pairs(t1.value7:GetPlayers()) do
+            local Character = player.Character
+
+            if Character then
+                for _, descendant in pairs(Character:GetDescendants()) do
+                    t1.value132(descendant)
+                end
+            end
+        end
+    end
+end
+t1.value133 = nil
+function t1.value133(p113)
+    local value49CFrame = t1.value49.CFrame
+    local v132 = t1.value49.CFrame * CFrame.new(math.random(10, 15) * (math.random(0, 1) ~= 1 and -1 or 1), 0, math.random(10, 15) * (math.random(0, 1) ~= 1 and -1 or 1))
+
+    t1.value49.CFrame = v132
+    t1.value47:SetPrimaryPartCFrame(v132)
+
+    if not p113 then
+        return
+    end
+
+    task.wait(0.15)
+    t1.value49.CFrame = value49CFrame
+    t1.value47:SetPrimaryPartCFrame(value49CFrame)
+end
+function t1.value134(p114)
+    if not isrbxactive() or not p114 then
+        return
+    end
+
+    local p114Name = p114.Name
+    local Model = p114:FindFirstAncestorWhichIsA("Model")
+
+    if not Model and p114.Parent then
+        Model = p114.Parent:FindFirstAncestorWhichIsA("Model")
+    end
+
+    if not Model then
+        return
+    end
+
+    local ModelName = t1.value7:FindFirstChild(Model.Name)
+
+    t1.value132(p114)
+
+    if ModelName and (Model and ModelName ~= t1.value17) then
+        local HumanoidRootPart = Model:FindFirstChild("HumanoidRootPart")
+        local Humanoid = Model:FindFirstChild("Humanoid")
+        local v398 = not Humanoid
+
+        if not v398 then
+            v398 = not HumanoidRootPart
+
+            if not v398 then
+                v398 = t1.value48.Health <= 0 or Humanoid.Health <= 0
+            end
+        end
+
+        if v398 then
+            return
+        end
+
+        if p114Name == "Counter" then
+            t1.value131(ModelName, Model, p114)
+
+            return
+        end
+
+        if not t1.value89(ModelName, true) then
+            local Magnitude = (t1.value49.Position - HumanoidRootPart.Position).Magnitude
+            local v400 = t1.value98(t1.value47, t1.value32)
+            local v401 = t1.value98(Model, t1.value31)
+            local v402 = Magnitude <= t1.value78
+            local v403 = Magnitude <= t1.value77 and t1.value127(HumanoidRootPart)
+            local DashPredict = t1.value79.Autoblock.DashPredict
+
+            if DashPredict then
+                DashPredict = t1.value79.Autoblock.Enabled
+
+                if DashPredict then
+                    DashPredict = t1.value88(t1.value66, Humanoid) or t1.value88(t1.value65, Humanoid)
+
+                    if DashPredict then
+                        DashPredict = Magnitude <= t1.value75
+                    end
+                end
+            end
+
+            if not v402 then
+                v402 = v403 or DashPredict
+            end
+
+            if v402 then
+                local v405 = t1.value79.Autoblock.Enabled or DashPredict
+
+                if v405 then
+                    v405 = v400 and v401
+                end
+
+                if v405 then
+                    local v406 = p114Name == "M1ing"
+                    local v407 = t1.value33[p114Name]
+                    local v408 = v406
+                    local v409 = t1.value34[p114Name]
+
+                    if not v406 then
+                        v408 = v407 or v409
+                    end
+
+                    if v408 then
+                        v408 = t1.value106(HumanoidRootPart, t1.value79.Autoblock.FOV)
+                    end
+
+                    if v408 and t1.value130(HumanoidRootPart, Humanoid, v403) then
+                        if v406 then
+                            t1.value128(HumanoidRootPart, Humanoid, DashPredict)
+
+                            return
+                        end
+
+                        if v407 then
+                            t1.value126(HumanoidRootPart, Humanoid)
+
+                            return
+                        end
+
+                        if v409 then
+                            t1.value129(HumanoidRootPart, Humanoid, Model, DashPredict)
+
+                            return
+                        end
+                    end
+                elseif t1.value79.Rage.AutoDodge then
+                    if p114Name == "M1ing" or t1.value33[p114Name] then
+                        t1.value133(true)
+
+                        return
+                    end
+
+                    if t1.value34[p114Name] then
+                        t1.value133(false)
+
+                        return
+                    end
+                end
+            end
+        end
+    elseif ModelName == t1.value17 then
+        local v410 = p114Name == "Freeze" and t1.value79.Rage.NoStun
+
+        if not v410 then
+            v410 = p114Name == "Slowed" and t1.value79.Rage.NoSlow
+        end
+
+        if v410 then
+            task.defer(p114.Destroy, p114)
+
+            return
+        end
+
+        local v411 = p114Name == "moveme"
+
+        if v411 then
+            v411 = t1.value79.Rage.CustomFrontDash.Enabled and (not t1.value79.Rage.CustomFrontDash.OnlyOnKeybind and t1.value79.Rage.CustomFrontDash.Distance > 1)
+        end
+
+        if v411 then
+            t1.value101(t1.value104(t1.value79.Rage.CustomFrontDash.Distance)[1], 0.05)
+
+            return
+        end
+
+        local v412 = p114Name == "dodgevelocity"
+
+        if v412 then
+            v412 = t1.value79.Rage.CustomSideDash.Distance > 1
+
+            if v412 then
+                v412 = t1.value79.Rage.CustomSideDash.Enabled and not t1.value79.Rage.CustomSideDash.OnlyOnKeybind
+            end
+        end
+
+        if v412 then
+            t1.value101(t1.value104(t1.value79.Rage.CustomSideDash.Distance)[1], 0.05)
+        end
+    end
+end
+function t1.value135(p115, p116, p117)
+    if p115 == "Ulted" then
+        if p116:GetAttribute(p115) then
+            local Character = p116:GetAttribute("Character")
+            local value1 = t1.value1
+            local v352 = string.format(p117.DisplayName .. " used <font color=\"%s\">%s Ult!</font>", t1.value97(t1.value107(p117, p116)), t1.value37[Character])
+            local v353 = t1.value96(p117)
+
+            value1({
+				Title = "KittyWare",
+				Description = v352,
+				Image = v353
+			})
+
+            if Character == "Bald" then
+                t1.value110(p117, p116, true)
+
+                return
+            end
+
+            t1.value110(p117, p116)
+
+            return
+        end
+
+        if not t1.value79.Visuals.ESP.Enabled and not p116:FindFirstChild("Counter") then
+            t1.value111(p116, p117, false)
+
+            return
+        end
+
+        t1.value110(p117, p116)
+    end
+end
+local function v55(p118)
+    local v417 = t1.value25[p118]
+
+    t1.value81(v417)
+
+    local v418 = t1.value26[p118]
+
+    t1.value81(v418)
+    t1.value25[p118] = {}
+    t1.value26[p118] = {}
+
+    local ok, result = pcall(function()
+        return p118.Character or p118.CharacterAdded:Wait()
+    end)
+    local u421 = result
+
+    if not ok or not u421 then
+        u421 = t1.value14:FindFirstChild(p118.Name)
+    end
+
+    t1.value82(t1.value25[p118], p118, "CharacterAdded", function(p119)
+        t1.value82(t1.value26[p118], p119, "DescendantAdded", t1.value134)
+
+        if p118 == t1.value17 then
+            return
+        end
+
+        t1.value110(p118, p119)
+        t1.value82(t1.value26[p118], u421, "AttributeChanged", function(p120)
+            t1.value135(p120, p119, p118)
+        end)
+    end)
+
+    if p118 ~= t1.value17 then
+        t1.value82(t1.value25[p118], p118, "AttributeChanged", function(p121)
+            local Character = p118.Character
+
+            if p121 == "Ultimate" and Character then
+                t1.value110(p118, Character)
+            end
+        end)
+        t1.value90(p118)
+
+        if not u421 then
+            return
+        end
+
+        t1.value110(p118, u421)
+        t1.value82(t1.value26[p118], u421, "DescendantAdded", t1.value134)
+        t1.value82(t1.value26[p118], u421, "AttributeChanged", function(p122)
+            t1.value135(p122, u421, p118)
+        end)
+    else
+        t1.value82(t1.value26[p118], u421, "DescendantAdded", t1.value134)
+    end
+
+    t1.value82(t1.value25[p118], p118, "CharacterRemoving", function(_)
+        if t1.value26[p118] then
+            local v612 = t1.value26[p118]
+
+            t1.value81(v612)
+        end
+    end)
+end
+function t1.value62(p124, p125)
+    if not p124 then
+        return
+    end
+
+    local value79 = t1.value79
+
+    for match in string.gmatch(p124, "[^%.]+") do
+        local v362 = match
+
+        if value79[v362] == nil then
+            return
+        end
+
+        if v362 ~= p124:match("[^%.]+$") then
+            value79 = value79[v362]
+        else
+            value79[v362] = p125
+        end
+    end
+end
+function t1.value136(p126, p127, p128)
+    t1.value62(p126, p128)
+
+    if p127 == "ESP" or p127 == "NoBillboards" then
+        t1.value112(not p128)
+
+        return
+    end
+
+    if p127 == "Custom Ultbar Color" or p127 == "Custom Ultbar Text" then
+        t1.value109()
+
+        return
+    end
+
+    if p127 == "NoGShadows" then
+        t1.value6.GlobalShadows = not p128
+
+        return
+    end
+
+    if p127 == "Headless" then
+        if p128 then
+            phead.Transparency = 1
+
+            return
+        end
+
+        phead.Transparency = 0
+
+        return
+    end
+
+    v54(p128)
+end
+function t1.value137(p129)
+    v50(p129)
+    task.wait()
+    t1.value83(t1.value60)
+    t1.value85(t1.value58)
+    task.wait(0.1)
+    t1.value84(t1.value60)
+end
+local _Color3 = Color3
+local new = v4.new
+local v58 = _Color3.fromRGB(142, 187, 255)
+t1.value138 = new(v4, {
+	name = "KittyWare 1.0.7",
+	accent = v58,
+	textsize = 13
+})
+local v59 = t1.value138:page({
+	name = "Combat",
+	pointer = "Combat Tab"
+})
+local v60 = t1.value138:page({
+	name = "Macro",
+	pointer = "Macro Tab"
+})
+local v61 = t1.value138:page({
+	name = "Visuals",
+	pointer = "Visual Tab"
+})
+local v62 = t1.value138:page({
+	name = "Rage",
+	pointer = "Rage Tab"
+})
+local v63 = t1.value138:page({
+	name = "Misc",
+	pointer = "Misc Tab"
+})
+local v64 = v59:section({
+	name = "Auto Block",
+	side = "left",
+	size = 230,
+	pointer = "Auto Block Section"
+})
+local v65 = v59:section({
+	name = "Misc",
+	side = "left",
+	size = 70,
+	pointer = "Misc Combat Section"
+})
+local v66 = v59:section({
+	name = "Auto Tech",
+	side = "right",
+	size = 90,
+	pointer = "Auto Tech Section"
+})
+local v67 = v59:section({
+	name = "Auto Tech Settings",
+	side = "right",
+	size = 210,
+	pointer = "Loop Dash v2 Section"
+})
+local v68 = v59:section({
+	name = "True DownSlam",
+	side = "right",
+	size = 70,
+	pointer = "TDS Section"
+})
+local v69 = v60:section({
+	name = "True M1 Reset",
+	side = "left",
+	size = 70,
+	pointer = "m1 Reset Section"
+})
+local v70 = v60:section({
+	name = "Emote Dash",
+	side = "left",
+	size = 150,
+	pointer = "EmoteDash Section"
+})
+local v71 = v60:section({
+	name = "Backdash Cancel",
+	side = "left",
+	size = 200,
+	pointer = "Backdash Section"
+})
+local v72 = v60:section({
+	name = "Tech Helper",
+	side = "right",
+	size = 200,
+	pointer = "Tech Section"
+})
+local v73 = v61:section({
+	name = "Clean Look",
+	side = "left",
+	size = 280,
+	pointer = "Visuals Main Section"
+})
+local v74 = v61:section({
+	name = "Custom Ultbar",
+	side = "right",
+	size = 130,
+	pointer = "Visuals Ult Section"
+})
+local v75 = v61:section({
+	name = "Custom Effects",
+	side = "left",
+	size = 70,
+	pointer = "Visuals Color Section"
+})
+local v76 = v61:section({
+	name = "ESP",
+	side = "right",
+	size = 280,
+	pointer = "Visuals ESP Section"
+})
+local v77 = v61:section({
+	name = "Character",
+	side = "left",
+	size = 50,
+	pointer = "Visuals Character Section"
+})
+local v78 = v62:section({
+	name = "Toggles",
+	side = "right",
+	size = 130,
+	pointer = "Rage Section"
+})
+local v79 = v62:section({
+	name = "Fling",
+	side = "right",
+	size = 140,
+	pointer = "Fling Section"
+})
+local v80 = v62:section({
+	name = "Front Dash",
+	side = "left",
+	size = 120,
+	pointer = "Front Dash Section"
+})
+local v81 = v62:section({
+	name = "Side Dash",
+	side = "left",
+	size = 230,
+	pointer = "Side Dash Section"
+})
+local v82 = v63:section({
+	name = "Misc",
+	side = "left",
+	size = 280,
+	pointer = "Misc Section"
+})
+v63:section({
+	name = "Config",
+	side = "right",
+	size = 250,
+	pointer = "Config Section"
+}):configloader({
+	folder = "KittyWare"
+})
+local toggle = v64.toggle
+local AutoblockEnabled = t1.value79.Autoblock.Enabled
+toggle(v64, {
+	name = "Enabled",
+	def = AutoblockEnabled,
+	pointer = "Auto Block Toggle",
+	callback = function(p130)
+    t1.value79.Autoblock.Enabled = p130
+end
+})
+local AutoM1 = t1.value79.Autoblock.AutoM1
+v64:toggle({
+	name = "Auto m1 Punish",
+	def = AutoM1,
+	pointer = "AutoM1",
+	callback = function(p131)
+    t1.value79.Autoblock.AutoM1 = p131
+end
+})
+local AutoCounter = t1.value79.Autoblock.AutoCounter
+v64:toggle({
+	name = "Auto Counter",
+	def = AutoCounter,
+	pointer = "Autocounter",
+	callback = function(p132)
+    t1.value79.Autoblock.AutoCounter = p132
+end
+})
+local DashPredict = t1.value79.Autoblock.DashPredict
+v64:toggle({
+	name = "Dash Prediction",
+	def = DashPredict,
+	pointer = "Dash Prediction Enabled",
+	callback = function(p133)
+    t1.value79.Autoblock.DashPredict = p133
+end
+})
+v64:slider({
+	name = "Autoblock FOV",
+	def = 180,
+	max = 360,
+	min = 0,
+	rounding = true,
+	pointer = "Autoblock FOV",
+	callback = function(p134)
+    t1.value79.Autoblock.FOV = p134
+end
+})
+local RotateChar = t1.value79.Autoblock.RotateChar
+v64:toggle({
+	name = "Rotate Character",
+	def = RotateChar,
+	pointer = "Character Easing Toggle",
+	callback = function(p135)
+    t1.value79.Autoblock.RotateChar = p135
+end
+})
+local RotateCam = t1.value79.Autoblock.RotateCam
+v64:toggle({
+	name = "Rotate Camera",
+	def = RotateCam,
+	pointer = "Cam Easing Toggle",
+	callback = function(p136)
+    t1.value79.Autoblock.RotateCam = p136
+end
+})
+v64:slider({
+	name = "Camera Easing",
+	def = 0,
+	max = 100,
+	min = 0,
+	rounding = true,
+	pointer = "Cam Easing",
+	callback = function(p137)
+    t1.value79.Autoblock.CamEasing = p137 / 100
+end
+})
+v64:slider({
+	name = "Character Easing",
+	def = 100,
+	max = 100,
+	min = 0,
+	rounding = true,
+	pointer = "Char Easing",
+	callback = function(p138)
+    t1.value79.Autoblock.CharEasing = p138 / 1000
+end
+})
+local FriendCheck = t1.value79.Misc.FriendCheck
+v65:toggle({
+	name = "Friend Check",
+	def = FriendCheck,
+	pointer = "Friend Check",
+	callback = function(p139)
+    t1.value79.Misc.FriendCheck = p139
+end
+})
+local toggle2 = v65.toggle
+local NoDashEndLag = t1.value79.Misc.NoDashEndLag
+toggle2(v65, {
+	name = "No Dash Endlag",
+	def = NoDashEndLag,
+	pointer = "No Dash Endlag",
+	callback = function(p140)
+    t1.value79.Misc.NoDashEndLag = p140
+end
+})
+local TDSEnabled = t1.value79.Misc.TDSEnabled
+v68:toggle({
+	name = "Enabled",
+	def = TDSEnabled,
+	pointer = "TDS Enabled",
+	callback = function(p141)
+    t1.value79.Misc.TDSEnabled = p141
+end
+})
+v68:keybind({
+	name = "True Down Slam Jump",
+	def = nil,
+	pointer = "TDS KeyBind",
+	callback = function(_)
+    if not t1.value79.Misc.TDSEnabled then
+        return
+    end
+
+    if t1.value47:FindFirstChild("NoJump") then
+        task.defer(t1.value47.NoJump.Destroy, t1.value47.NoJump)
+    end
+
+    t1.value48:ChangeState(Enum.HumanoidStateType.Jumping)
+    task.wait(0.01)
+    t1.value49.Velocity = Vector3.new(t1.value49.Velocity.X, 35, t1.value49.Velocity.Z)
+    t1.value124()
+end
+})
+local AutoTechEnabled = t1.value79.AutoTech.Enabled
+v66:toggle({
+	name = "Enabled",
+	def = AutoTechEnabled,
+	pointer = "Auto Tech Toggle",
+	callback = function(p143)
+    t1.value79.AutoTech.Enabled = p143
+end
+})
+local dropdown = v66.dropdown
+local Tech = t1.value79.AutoTech.Tech
+dropdown(v66, {
+	name = "Auto Tech Variant",
+	def = Tech,
+	max = 5,
+	options = {
+		"Kiba",
+		"Supa",
+		"Lock On Dash",
+		"Loop Dash",
+		"Loop Dash v2"
+	},
+	pointer = "Auto Tech Variant",
+	callback = function(p144)
+    t1.value79.AutoTech.Tech = p144
+end
+})
+v67:slider({
+	name = "Loop v2 Precision",
+	def = 35,
+	max = 100,
+	min = 0,
+	rounding = true,
+	pointer = "Precision",
+	callback = function(p145)
+    t1.value79.AutoTech.Loopv2.Precision = p145 / 100
+end
+})
+v67:slider({
+	name = "Loop v2 First Flick Angle",
+	def = 0,
+	max = 360,
+	min = 0,
+	rounding = true,
+	pointer = "1 Flick Delay",
+	callback = function(p146)
+    t1.value79.AutoTech.Loopv2.FirstFlickAngle = p146
+end
+})
+v67:slider({
+	name = "Loop v2 Second Flick Delay",
+	def = 5,
+	max = 10,
+	min = 0,
+	rounding = true,
+	pointer = "Flick Delay",
+	callback = function(p147)
+    t1.value79.AutoTech.Loopv2.SecondFlick = p147 / 100
+end
+})
+local Jump = t1.value79.AutoTech.Loopv2.Jump
+v67:toggle({
+	name = "Loop v2 Jump",
+	def = Jump,
+	pointer = "Loop Jump",
+	callback = function(p148)
+    t1.value79.AutoTech.Loopv2.Jump = p148
+end
+})
+v67:slider({
+	name = "Lockon Dash Precision",
+	def = 100,
+	max = 100,
+	min = 0,
+	rounding = true,
+	pointer = "fsdfsd",
+	callback = function(p149)
+    t1.value79.AutoTech.LockonPrecision = p149 / 1000
+end
+})
+v67:toggle({
+	name = "Supa Uses Heartbeat",
+	def = false,
+	pointer = "fdgsdfgdsg",
+	callback = function(p150)
+    if p150 then
+        t1.value79.AutoTech.SupaMethod = "Heartbeat"
+
+        return
+    end
+
+    t1.value79.AutoTech.SupaMethod = "RenderStepped"
+end
+})
+v67:toggle({
+	name = "Loop Dash Looks Up",
+	def = false,
+	pointer = "lop up",
+	callback = function(p151)
+    t1.value79.AutoTech.LoopDashLooksUp = p151
+end
+})
+local TechHelper = t1.value79.Macro.TechHelper
+local toggle3 = v72.toggle
+local TechHelperEnabled = TechHelper.Enabled
+toggle3(v72, {
+	name = "Enabled",
+	def = TechHelperEnabled,
+	pointer = "Tech Helper Toggle",
+	callback = function(p152)
+    t1.value79.Macro.TechHelper.Enabled = p152
+end
+})
+local Tech2 = t1.value79.Macro.TechHelper.Tech
+v72:dropdown({
+	name = "Tech Helper Variant",
+	def = Tech2,
+	max = 5,
+	options = {
+		"Humbled Twisted",
+		"Loop Dash",
+		"Instant Lee",
+		"Oreo Tech",
+		"Lix Tech"
+	},
+	pointer = "Tech Helper Variant",
+	callback = function(p153)
+    t1.value79.Macro.TechHelper.Tech = p153
+end
+})
+v72:keybind({
+	name = "Tech Helper KeyBind",
+	def = nil,
+	pointer = "Tech Helper KeyBind",
+	callback = function(_)
+    if not t1.value79.Macro.TechHelper.Enabled or t1.value79.Macro.TechHelper.Tech == "" then
+        return
+    end
+
+    local v447 = t1.value104(0.36)
+
+    if t1.value79.Macro.TechHelper.Tech == "Humbled Twisted" then
+        t1.value124()
+        task.wait(v447[1] - 0.05)
+        v51()
+        task.wait(0.075 - v447[2])
+        t1.value93(-90, 0.1)
+        task.wait(0.1)
+        t1.value93(180, 0.1)
+        task.wait(0.125)
+        t1.value93(-90, 0.1)
+
+        return
+    end
+
+    if t1.value79.Macro.TechHelper.Tech == "Loop Dash" then
+        t1.value125()
+        task.wait(v447[1])
+        v51()
+        t1.value92(45)
+        t1.value93(310, 0.4 - v447[2])
+
+        return
+    end
+
+    if t1.value79.Macro.TechHelper.Tech == "Instant Lee" then
+        t1.value124()
+        task.wait(v447[1] - 0.05)
+        v51()
+        task.wait(v447[2])
+        t1.value92(145)
+        task.wait(0.075 + v447[2])
+        t1.value93(-175, 0.1)
+
+        return
+    end
+
+    if t1.value79.Macro.TechHelper.Tech == "Oreo Tech" then
+        t1.value125()
+        task.wait(v447[1])
+        t1.value92(180)
+        v51()
+        task.wait(0.18 + v447[2])
+        t1.value92(180)
+
+        return
+    end
+
+    if t1.value79.Macro.TechHelper.Tech == "Lix Tech" then
+        t1.value125()
+        task.wait(v447[1])
+        v51()
+        task.wait(0.16 + v447[2])
+        t1.value92(180)
+    end
+end
+})
+v72:toggle({
+	name = "Enabled",
+	def = false,
+	pointer = "Extra Tech Toggle",
+	callback = function(p155)
+    t1.value79.Macro.ExtraTechHelper.Enabled = p155
+end
+})
+v72:keybind({
+	name = "Extra Tech Helper",
+	def = nil,
+	pointer = "Tech Helper Helper",
+	callback = function(_)
+    if t1.value79.Macro.ExtraTechHelper.Tech == "" then
+        return
+    end
+
+    local LastM1Hitted = t1.value47:GetAttribute("LastM1Hitted")
+
+    if not LastM1Hitted then
+        return
+    end
+
+    local v451 = LastM1Hitted:match("^(.-);;")
+    local v452 = t1.value14:FindFirstChild(v451)
+    local v453 = t1.value7:FindFirstChild(v451)
+
+    if not v452 or not v453 then
+        return
+    end
+
+    if t1.value79.Macro.ExtraTechHelper.Tech == "Instant Lethal Shift Lock" then
+        v453:GetAttribute("Ping")
+
+        local v454 = t1.value104(2.2)
+
+        v50(Enum.KeyCode.Two)
+        task.wait(v454[1])
+        t1.value83(t1.value57)
+        v51()
+        task.wait(0.18 + v454[2])
+        t1.value92(180)
+        t1.value84(t1.value57)
+
+        return
+    end
+
+    if t1.value79.Macro.ExtraTechHelper.Tech == "Instant Lethal Loop Dash" then
+        v453:GetAttribute("Ping")
+
+        local v455 = t1.value104(2.2)
+
+        v50(Enum.KeyCode.Two)
+        task.wait(v455[1])
+        t1.value83(t1.value57)
+        v51()
+        task.wait(0.05 - v455[2])
+        t1.value92(45)
+        t1.value93(275, 0.25)
+        t1.value84(t1.value57)
+
+        return
+    end
+
+    if t1.value79.Macro.ExtraTechHelper.Tech == "Materia Tech" then
+        local HumanoidRootPart = v452:FindFirstChild("HumanoidRootPart")
+
+        if not HumanoidRootPart then
+            return
+        end
+
+        local connection = t1.value5.Heartbeat:Connect(function()
+            t1.value92(nil, HumanoidRootPart.Position)
+        end)
+
+        v50(Enum.KeyCode.Three)
+        task.wait(0.64)
+        t1.value83(t1.value61)
+        task.wait(0.005)
+        t1.value80(connection)
+        t1.value92(90)
+        t1.value85(t1.value58)
+
+        local value61 = t1.value61
+
+        t1.value84(value61)
+        t1.value124()
+    end
+end
+})
+v72:dropdown({
+	name = "Extra Tech Variant",
+	def = "",
+	max = 3,
+	options = {
+		"Instant Lethal Shift Lock",
+		"Instant Lethal Loop Dash",
+		"Materia Tech"
+	},
+	pointer = "Tech Helper Variant",
+	callback = function(p157)
+    t1.value79.Macro.ExtraTechHelper.Tech = p157
+end
+})
+v69:toggle({
+	name = "Enabled",
+	def = false,
+	pointer = "True M1 Reset Toggle",
+	callback = function(p158)
+    t1.value79.Macro.m1ResetEnabled = p158
+end
+})
+v69:keybind({
+	name = "M1 Reset KeyBind",
+	def = nil,
+	pointer = "M1 Reset Keybind",
+	callback = function(_)
+    if not t1.value79.Macro.m1ResetEnabled then
+        return
+    end
+
+    local v462 = t1.value104(0.28)[1]
+
+    t1.value124()
+    task.wait(v462)
+    t1.value92(-90)
+    t1.value83(t1.value61)
+    t1.value85(t1.value58)
+    task.wait(v462)
+
+    local value61 = t1.value61
+
+    t1.value84(value61)
+    t1.value92(90)
+    v51()
+end
+})
+v70:toggle({
+	name = "Enabled",
+	def = false,
+	pointer = "Emote Dash Toggle",
+	callback = function(p160)
+    t1.value79.Macro.EmoteDash.Enabled = p160
+end
+})
+v70:keybind({
+	name = "Emote Dash KeyBind",
+	def = nil,
+	pointer = "Emote Dash KeyBind",
+	callback = function(_)
+    t1.value84(t1.value59)
+    t1.value84(t1.value60)
+
+    if t1.value79.Macro.EmoteDash.Type == "Straight" then
+        t1.value92(90)
+    end
+
+    if t1.value79.Macro.EmoteDash.Type == "Straight" or t1.value79.Macro.EmoteDash.Type == "Right" then
+        t1.value83(t1.value61)
+    elseif t1.value79.Macro.EmoteDash.Type == "Left" then
+        t1.value83(t1.value63)
+    end
+
+    t1.value48:ChangeState(Enum.HumanoidStateType.Jumping)
+    task.wait(0.005)
+    t1.value85(t1.value58)
+    task.wait(t1.value79.Macro.EmoteDash.Delay)
+
+    local dodgevelocity = t1.value49:FindFirstChild("dodgevelocity")
+
+    if dodgevelocity then
+        dodgevelocity:Destroy()
+        t1.value87(t1.value65)
+        t1.value87(t1.value66)
+    end
+
+    t1.value84(t1.value61)
+    t1.value84(t1.value63)
+
+    if t1.value79.Macro.EmoteDash.Type == "Straight" then
+        t1.value92(-90)
+    end
+end
+})
+local Delay = t1.value79.Macro.EmoteDash.Delay
+v70:textbox({
+	name = "Emote Dash Delay",
+	def = Delay,
+	placeholder = "",
+	pointer = "Emote Dash Delay",
+	callback = function(p162)
+    t1.value79.Macro.EmoteDash.Delay = p162
+end
+})
+local EmoteDashType = t1.value79.Macro.EmoteDash.Type
+v70:dropdown({
+	name = "Emote Dash Type",
+	def = EmoteDashType,
+	max = 3,
+	options = {
+		"Right",
+		"Left",
+		"Straight"
+	},
+	pointer = "Emote Dash Type",
+	callback = function(p163)
+    t1.value79.Macro.EmoteDash.Type = p163
+end
+})
+v71:keybind({
+	name = "Backdash Cancel 1",
+	def = nil,
+	pointer = "Backdash Cancel 1 Keybind",
+	callback = function(_)
+    if not t1.value79.Macro.BackDashCancel1.Enabled then
+        return
+    end
+
+    t1.value137(Enum.KeyCode.One)
+end
+})
+v71:toggle({
+	name = "Enabled",
+	def = false,
+	pointer = "Backdash Cancel 1 Enabled",
+	callback = function(p165)
+    t1.value79.Macro.BackDashCancel1.Enabled = p165
+end
+})
+v71:keybind({
+	name = "Backdash Cancel 2",
+	def = nil,
+	pointer = "Backdash Cancel 2 Keybind",
+	callback = function(_)
+    if not t1.value79.Macro.BackDashCancel2.Enabled then
+        return
+    end
+
+    t1.value137(Enum.KeyCode.Two)
+end
+})
+v71:toggle({
+	name = "Enabled",
+	def = false,
+	pointer = "Backdash Cancel 2 Enabled",
+	callback = function(p167)
+    t1.value79.Macro.BackDashCancel2.Enabled = p167
+end
+})
+v71:keybind({
+	name = "Backdash Cancel 3",
+	def = nil,
+	pointer = "Backdash Cancel 3 Keybind",
+	callback = function(_)
+    if not t1.value79.Macro.BackDashCancel3.Enabled then
+        return
+    end
+
+    t1.value137(Enum.KeyCode.Three)
+end
+})
+v71:toggle({
+	name = "Enabled",
+	def = false,
+	pointer = "Backdash Cancel 3 Enabled",
+	callback = function(p169)
+    t1.value79.Macro.BackDashCancel3.Enabled = p169
+end
+})
+v71:keybind({
+	name = "Backdash Cancel 4",
+	def = nil,
+	pointer = "Backdash Cancel 4 Keybind",
+	callback = function(_)
+    if not t1.value79.Macro.BackDashCancel4.Enabled then
+        return
+    end
+
+    t1.value137(Enum.KeyCode.Four)
+end
+})
+v71:toggle({
+	name = "Enabled",
+	def = false,
+	pointer = "Backdash Cancel 4 Enabled",
+	callback = function(p171)
+    t1.value79.Macro.BackDashCancel4.Enabled = p171
+end
+})
+v73:toggle({
+	name = "No Textures",
+	def = false,
+	pointer = "No Textures",
+	callback = function(p172)
+    t1.value113(false, p172)
+end
+})
+v73:button({
+	name = "Update No Textures List",
+	function()
+    t1.value113(true)
+end
+})
+v73:toggle({
+	name = "No Shadows",
+	def = false,
+	pointer = "No Shadows",
+	callback = function(p173)
+    t1.value136("Visuals.NoShadows", "NoGShadows", p173)
+end
+})
+v73:toggle({
+	name = "No Smoke",
+	def = false,
+	pointer = "No Smoke",
+	callback = function(p174)
+    t1.value136("Visuals.NoSmoke", "No Smoke", p174)
+end
+})
+v73:toggle({
+	name = "No Rings",
+	def = false,
+	pointer = "No Rings",
+	callback = function(p175)
+    t1.value136("Visuals.NoRings", "No Rings", p175)
+end
+})
+v73:toggle({
+	name = "No Capes",
+	def = false,
+	pointer = "No Capes",
+	callback = function(p176)
+    t1.value136("Visuals.NoCapes", "No Capes", p176)
+end
+})
+v73:toggle({
+	name = "No Auras",
+	def = false,
+	pointer = "No Auras",
+	callback = function(p177)
+    t1.value136("Visuals.NoAuras", "No Auras", p177)
+end
+})
+v73:toggle({
+	name = "No Garou After Images",
+	def = false,
+	pointer = "No Garou After Images",
+	callback = function(p178)
+    t1.value136("Visuals.NoGarouC", "No Garou Clones", p178)
+end
+})
+v73:toggle({
+	name = "No New Light",
+	def = false,
+	pointer = "No New Light",
+	callback = function(p179)
+    t1.value136("Visuals.NoNewLight", "No New Light", p179)
+end
+})
+v73:slider({
+	name = "Saturation",
+	def = 0,
+	max = 200,
+	min = 0,
+	rounding = true,
+	pointer = "Saturation",
+	callback = function(p180)
+    t1.value21.Saturation = p180 / 100
+end
+})
+v73:slider({
+	name = "FOV",
+	def = 70,
+	max = 120,
+	min = 1,
+	rounding = true,
+	pointer = "FOV",
+	callback = function(p181)
+    t1.value79.Visuals.FOV = p181
+    t1.value16.FieldOfView = p181
+end
+})
+v76:toggle({
+	name = "Enabled",
+	def = false,
+	pointer = "ESP Toggle",
+	callback = function(p182)
+    t1.value136("Visuals.ESP.Enabled", "ESP", p182)
+end
+})
+local FriendColor = t1.value79.Visuals.ESP.FriendColor
+v76:colorpicker({
+	name = "Friend Color",
+	cpname = "",
+	def = FriendColor,
+	pointer = "Friend Color",
+	callback = function(p183)
+    t1.value79.Visuals.ESP.FriendColor = p183
+    t1.value112(false, false)
+end
+})
+local EnemyColor = t1.value79.Visuals.ESP.EnemyColor
+v76:colorpicker({
+	name = "Enemy Color",
+	cpname = "",
+	def = EnemyColor,
+	pointer = "Enemy Color",
+	callback = function(p184)
+    t1.value79.Visuals.ESP.EnemyColor = p184
+    t1.value112(false, false)
+end
+})
+local NeutralColor = t1.value79.Visuals.ESP.NeutralColor
+v76:colorpicker({
+	name = "Neutral Color",
+	cpname = "",
+	def = NeutralColor,
+	pointer = "Neutral Color",
+	callback = function(p185)
+    t1.value79.Visuals.ESP.NeutralColor = p185
+    t1.value112(false, false)
+end
+})
+local UltColor = t1.value79.Visuals.ESP.UltColor
+v76:colorpicker({
+	name = "Ultimate Color",
+	cpname = "",
+	def = UltColor,
+	pointer = "Ultimate Color",
+	callback = function(p186)
+    t1.value79.Visuals.ESP.UltColor = p186
+    t1.value112(false, false)
+end
+})
+local SaitamaUltColor = t1.value79.Visuals.ESP.SaitamaUltColor
+v76:colorpicker({
+	name = "Saitama Ultimate Color",
+	cpname = "",
+	def = SaitamaUltColor,
+	pointer = "Saitama Ultimate Color",
+	callback = function(p187)
+    t1.value79.Visuals.ESP.SaitamaUltColor = p187
+    t1.value112(false, false)
+end
+})
+local colorpicker = v76.colorpicker
+local DeathCounterColor = t1.value79.Visuals.ESP.DeathCounterColor
+colorpicker(v76, {
+	name = "Death Counter Color",
+	cpname = "",
+	def = DeathCounterColor,
+	pointer = "Death Counter Color",
+	callback = function(p188)
+    t1.value79.Visuals.ESP.DeathCounterColor = p188
+    t1.value112(false, false)
+end
+})
+v76:slider({
+	name = "Outline Transparency",
+	def = 70,
+	max = 100,
+	min = 0,
+	rounding = true,
+	pointer = "Outline Transparency",
+	callback = function(p189)
+    t1.value79.Visuals.ESP.OutlineTransparency = p189 / 100
+    t1.value112(false, false)
+end
+})
+v76:toggle({
+	name = "Death Counter ESP",
+	def = false,
+	pointer = "Death Counter Without ESP",
+	callback = function(p190)
+    t1.value79.Visuals.ESP.DeathCounterESP = p190
+end
+})
+v76:toggle({
+	name = "Saitama Ult ESP",
+	def = false,
+	pointer = "Saitama Ult Without ESP",
+	callback = function(p191)
+    t1.value79.Visuals.ESP.SaitamaUltESP = p191
+end
+})
+v76:toggle({
+	name = "No Billboards",
+	def = false,
+	pointer = "No Billboards Toggle",
+	callback = function(p192)
+    t1.value136("Visuals.ESP.NoBillboards", "NoBillboards", p192)
+end
+})
+v76:keybind({
+	name = "Add Friend/Enemy Keybind",
+	def = nil,
+	pointer = "Add Friend Keybind",
+	callback = function(_)
+    local value19Target = t1.value19.Target
+
+    if not value19Target then
+        return
+    end
+
+    local Model = value19Target:FindFirstAncestorOfClass("Model")
+
+    if not Model or not Model:FindFirstChildOfClass("Humanoid") then
+        return
+    end
+
+    local ModelName = t1.value7:FindFirstChild(Model.Name)
+
+    if not ModelName then
+        return
+    end
+
+    if t1.value28[ModelName.Name] == "Friend" then
+        t1.value28[ModelName.Name] = "Neutral"
+    elseif t1.value28[ModelName.Name] == "Neutral" then
+        t1.value28[ModelName.Name] = "Enemy"
+    elseif t1.value28[ModelName.Name] == "Enemy" then
+        t1.value28[ModelName.Name] = "Friend"
+    end
+
+    t1.value110(ModelName, Model)
+end
+})
+v74:toggle({
+	name = "Custom Ultbar Text",
+	def = false,
+	pointer = "Custom Ultbar Text Toggle",
+	callback = function(p194)
+    t1.value136("Visuals.CustomUltbar.UltbarText.Enabled", "Custom Ultbar Text", p194)
+end
+})
+local UltbarTextText = t1.value79.Visuals.CustomUltbar.UltbarText.Text
+v74:textbox({
+	name = "Ultbar Text",
+	def = UltbarTextText,
+	placeholder = "",
+	pointer = "Custom Ultbar Text",
+	callback = function(p195)
+    t1.value79.Visuals.CustomUltbar.UltbarText.Text = p195
+    t1.value136(nil, "Custom Ultbar Text", t1.value79.Visuals.CustomUltbar.UltbarText.Enabled)
+end
+})
+v74:toggle({
+	name = "Custom Ultbar Color",
+	def = false,
+	pointer = "Custom Ultbar Color Toggle",
+	callback = function(p196)
+    t1.value136("Visuals.CustomUltbar.UltbarColor.Enabled", "Custom Ultbar Color", p196)
+end
+})
+local UltbarColor = t1.value79.Visuals.CustomUltbar.UltbarColor
+local colorpicker2 = v74.colorpicker
+local UltbarColorColor = UltbarColor.Color
+colorpicker2(v74, {
+	name = "Ultbar Color",
+	cpname = "",
+	def = UltbarColorColor,
+	pointer = "Ultbar Color",
+	callback = function(p197)
+    t1.value79.Visuals.CustomUltbar.UltbarColor.Color = p197
+    t1.value136(nil, "Custom Ultbar Color", t1.value79.Visuals.CustomUltbar.UltbarColor.Enabled)
+end
+})
+v75:toggle({
+	name = "Enabled",
+	def = false,
+	pointer = "Custom Effects Toggle",
+	callback = function(p198)
+    t1.value136("Visuals.EffectsColor.Enabled", "Custom Effects Color", p198)
+end
+})
+local EffectsColorColor = t1.value79.Visuals.EffectsColor.Color
+v75:colorpicker({
+	name = "Effects Color",
+	cpname = "",
+	def = EffectsColorColor,
+	pointer = "Custom Effects Color",
+	callback = function(p199)
+    t1.value79.Visuals.EffectsColor.Color = p199
+    t1.value136(nil, "Custom Effects Color", t1.value79.Visuals.EffectsColor.Enabled)
+end
+})
+v77:toggle({
+	name = "Headless",
+	def = false,
+	pointer = "Headless Toggle",
+	callback = function(p200)
+    t1.value136("Visuals.Headless", "Headless", p200)
+end
+})
+v78:toggle({
+	name = "No Stun",
+	def = false,
+	pointer = "No Stun",
+	callback = function(p201)
+    t1.value79.Rage.NoStun = p201
+end
+})
+v78:toggle({
+	name = "No Slow",
+	def = false,
+	pointer = "No Slow",
+	callback = function(p202)
+    t1.value79.Rage.NoSlow = p202
+end
+})
+v78:toggle({
+	name = "No Fatigue",
+	def = false,
+	pointer = "No Fatigue",
+	callback = function(p203)
+    t1.value79.Rage.NoFatigue = p203
+end
+})
+v78:toggle({
+	name = "No No Jump",
+	def = false,
+	pointer = "No No Jump",
+	callback = function(p204)
+    t1.value79.Rage.AlwaysJump = p204
+end
+})
+v78:toggle({
+	name = "Auto Dodge",
+	def = false,
+	pointer = "AutoDodge Toggle",
+	callback = function(p205)
+    t1.value79.Rage.AutoDodge = p205
+end
+})
+v79:textbox({
+	name = "Fling Target",
+	def = "",
+	placeholder = "",
+	pointer = "Fling Target",
+	callback = function(p206)
+    t1.value79.Rage.Fling.Target = p206
+end
+})
+v79:toggle({
+	name = "Loop Fling",
+	def = false,
+	pointer = "AutoDodge Toggle",
+	callback = function(p207)
+    t1.value79.Rage.Fling.LoopFling = p207
+end
+})
+v79:button({
+	name = "Fling",
+	callback = function()
+    repeat
+        local v516
+        for v519, v520 in pairs(t1.value7:GetPlayers()) do
+
+            if v520.Name == t1.value79.Rage.Fling.Target or v520.DisplayName == t1.value79.Rage.Fling.Target then
+                v516 = v520
+            end
+        end
+        if not v516 then
+            t1.value1({
+					Title = "KittyWare",
+					Description = "Fling target isn't on the server"
+				})
+
+            return
+        end
+        local Character = v516.Character
+        if Character then
+            t1.value100(Character)
+        end
+        task.wait(3)
+    until not t1.value79.Rage.Fling.LoopFling
+end
+})
+v79:toggle({
+	name = "Anti Fling",
+	def = false,
+	pointer = "Anti Fling",
+	callback = function(p208)
+    if p208 then
+        t1.value41 = t1.value5.Heartbeat:Connect(function()
+            if t1.value49.AssemblyLinearVelocity.Magnitude > 250 or t1.value49.AssemblyAngularVelocity.Magnitude > 250 then
+                t1.value49.AssemblyAngularVelocity = Vector3.new(0, 0, 0)
+                t1.value49.AssemblyLinearVelocity = Vector3.new(0, 0, 0)
+                t1.value49.CFrame = nil
+
+                return
+            end
+
+            if t1.value49.AssemblyLinearVelocity.Magnitude < 50 or t1.value49.AssemblyAngularVelocity.Magnitude > 50 then
+                local _ = t1.value49.CFrame
+            end
+        end)
+
+        return
+    end
+
+    t1.value80(t1.value41)
+end
+})
+v80:toggle({
+	name = "Enabled",
+	def = false,
+	pointer = "Custom Front Dash Enabled",
+	callback = function(p209)
+    t1.value79.Rage.CustomFrontDash.Enabled = p209
+end
+})
+v80:toggle({
+	name = "Only On Keybind",
+	def = false,
+	pointer = "Custom front only on kebab",
+	callback = function(p210)
+    t1.value79.Rage.CustomFrontDash.OnlyOnKeybind = p210
+end
+})
+v80:slider({
+	name = "Front Dash Distance",
+	def = 10,
+	max = 100,
+	min = 1,
+	rounding = true,
+	pointer = "Front Dash Distance",
+	callback = function(p211)
+    t1.value79.Rage.CustomFrontDash.Distance = p211 / 10
+end
+})
+v80:keybind({
+	name = "Keybind",
+	def = nil,
+	pointer = "front keybind",
+	callback = function(_)
+    if not t1.value79.Rage.CustomFrontDash.Enabled then
+        return
+    end
+
+    v51()
+    t1.value101(t1.value79.Rage.CustomFrontDash.Distance, 0.15)
+end
+})
+v81:toggle({
+	name = "Enabled",
+	def = false,
+	pointer = "Custom Side Dash Enabled",
+	callback = function(p213)
+    t1.value79.Rage.CustomSideDash.Enabled = p213
+end
+})
+v81:toggle({
+	name = "Only On Keybind",
+	def = false,
+	pointer = "Side only on keybind",
+	callback = function(p214)
+    t1.value79.Rage.CustomSideDash.OnlyOnKeybind = p214
+end
+})
+v81:slider({
+	name = "Side Dash Distance",
+	def = 10,
+	max = 100,
+	min = 1,
+	rounding = true,
+	pointer = "Side Dash Distance",
+	callback = function(p215)
+    t1.value79.Rage.CustomSideDash.Distance = p215 / 10
+end
+})
+local Side = t1.value79.Rage.CustomSideDash.Side
+v81:dropdown({
+	name = "Dash Side",
+	def = Side,
+	max = 3,
+	options = {
+		"Right",
+		"Left",
+		"Straight"
+	},
+	pointer = "CustomSideDashType",
+	callback = function(p216)
+    t1.value79.Rage.CustomSideDash.Side = p216
+end
+})
+v81:keybind({
+	name = "Keybind",
+	def = nil,
+	pointer = "Side keybind",
+	callback = function(_)
+    if not t1.value79.Rage.CustomSideDash.Enabled then
+        return
+    end
+
+    t1.value84(t1.value59)
+    t1.value84(t1.value60)
+
+    if t1.value79.Rage.CustomSideDash.Side == "Straight" then
+        t1.value92(90)
+    end
+
+    if t1.value79.Rage.CustomSideDash.Side == "Straight" or t1.value79.Rage.CustomSideDash.Side == "Right" then
+        t1.value83(t1.value61)
+    elseif t1.value79.Rage.CustomSideDash.Side == "Left" then
+        t1.value83(t1.value63)
+    end
+
+    if t1.value79.Rage.CustomSideDash.Jump then
+        t1.value83(t1.value57)
+    end
+
+    task.wait(0.005)
+    t1.value85(t1.value58)
+
+    if t1.value79.Rage.CustomSideDash.RemoveInertia then
+        task.wait(t1.value79.Rage.CustomSideDash.RMIDelay)
+
+        local dodgevelocity = t1.value49:FindFirstChild("dodgevelocity")
+
+        if t1.value79.Rage.CustomSideDash.RemoveInertia and dodgevelocity then
+            dodgevelocity:Destroy()
+            t1.value87(t1.value65)
+            t1.value87(t1.value66)
+        end
+    end
+
+    t1.value84(t1.value57)
+    t1.value84(t1.value61)
+    t1.value84(t1.value63)
+
+    if t1.value79.Rage.CustomSideDash.Side == "Straight" then
+        t1.value92(-90)
+    end
+
+    t1.value101(t1.value79.Rage.CustomSideDash.Distance, 0.05)
+end
+})
+v81:toggle({
+	name = "Jump",
+	def = false,
+	pointer = "SDJ",
+	callback = function(p218)
+    t1.value79.Rage.CustomSideDash.Jump = p218
+end
+})
+v81:toggle({
+	name = "Remove Inertia",
+	def = false,
+	pointer = "Remove Ineria",
+	callback = function(p219)
+    t1.value79.Rage.CustomSideDash.RemoveInertia = p219
+end
+})
+v81:slider({
+	name = "RM Inertia Delay",
+	def = 70,
+	max = 100,
+	min = 1,
+	rounding = true,
+	pointer = "RMID",
+	callback = function(p220)
+    t1.value79.Rage.CustomSideDash.RMIDelay = p220 / 1000
+end
+})
+v82:toggle({
+	name = "Display Hitbox",
+	def = false,
+	pointer = "Display Hitbox",
+	callback = function(p221)
+    if p221 then
+        t1.value43 = Instance.new("Part")
+        t1.value43.Size = Vector3.new(2, 2, 1)
+        t1.value43.Color = Color3.new(1, 0, 0)
+        t1.value43.Transparency = 0.5
+        t1.value43.Anchored = true
+        t1.value43.CanCollide = false
+        t1.value43.CanQuery = false
+        t1.value43.CanTouch = false
+        t1.value43.Name = "PingGhost"
+        t1.value43.Parent = workspace
+        t1.value38 = t1.value5.Heartbeat:Connect(function(_)
+            local timestamp = tick()
+            local value10 = t1.value10
+            local value54 = t1.value54
+            local value49CFrame = t1.value49.CFrame
+
+            value10(value54, {
+					time = timestamp,
+					cf = value49CFrame
+				})
+
+            for i = #t1.value54, 1, -1 do
+                local v620 = i
+
+                if timestamp - t1.value54[v620].time > 2 then
+                    t1.value11(t1.value54, v620)
+                end
+            end
+        end)
+        t1.value39 = t1.value5.RenderStepped:Connect(function()
+            local v621 = tick() - t1.value103(1000)
+            local v622 = t1.value95(v621)
+
+            if v622 then
+                t1.value43.CFrame = v622
+            end
+        end)
+
+        return
+    end
+
+    if t1.value43 then
+        t1.value43:Destroy()
+    end
+
+    t1.value80(t1.value38)
+    t1.value80(t1.value39)
+end
+})
+v82:button({
+	name = "Rejoin",
+	callback = function()
+    t1.value4:TeleportToPlaceInstance(game.PlaceId, game.JobId, t1.value17)
+end
+})
+v82:button({
+	name = "Copy Discord Invite",
+	callback = function()
+    setclipboard(t1.value9)
+end
+})
+local keybind = v82.keybind
+local RightShift = Enum.KeyCode.RightShift
+keybind(v82, {
+	name = "GUI Keybind",
+	def = RightShift,
+	allowed = 0,
+	pointer = "GUI Keybind",
+	changeCallback = function(p223)
+    t1.value138:setkey(p223)
+    t1.value138.key = p223
+end
+})
+v82:toggle({
+	name = "Screen Strench Enabled",
+	def = false,
+	pointer = "Stretch Screen Toggle",
+	callback = function(p224)
+    t1.value79.Misc.StretchEnabled = p224
+
+    if not p224 then
+        t1.value80(t1.value40)
+
+        return
+    end
+
+    t1.value5.RenderStepped:Connect(function()
+        t1.value16.CFrame = t1.value16.CFrame * CFrame.new(0, 0, 0, 1, 0, 0, 0, t1.value79.Misc.StretchValue, 0, 0, 0, 1)
+    end)
+end
+})
+v82:slider({
+	name = "Screen Stretch Value",
+	def = 100,
+	max = 120,
+	min = 0,
+	rounding = true,
+	pointer = "Stretch Screen Value",
+	callback = function(p225)
+    t1.value79.Misc.StretchValue = p225 / 100
+end
+})
+local ClockTime = t1.value6.ClockTime
+v82:slider({
+	name = "Day Time",
+	def = ClockTime,
+	max = 24,
+	min = 0,
+	rounding = true,
+	pointer = "CycleTime",
+	callback = function(p226)
+    t1.value6.ClockTime = p226
+end
+})
+v82:toggle({
+	name = "Lock On Enabled",
+	def = false,
+	pointer = "Lock On Enabled",
+	callback = function(p227)
+    t1.value79.Misc.LockOnEnabled = p227
+    t1.value80(t1.value42)
+end
+})
+v82:slider({
+	name = "Lock On Precision",
+	def = 100,
+	max = 100,
+	min = 0,
+	rounding = true,
+	pointer = "lockonprec",
+	callback = function(p228)
+    t1.value79.Misc.LockOnPrecision = p228 / 100
+end
+})
+v82:keybind({
+	name = "Lock On Keybind",
+	def = nil,
+	pointer = "Lock On Keybind",
+	callback = function(_)
+    if not t1.value79.Misc.LockOnEnabled then
+        return
+    end
+    if t1.value42 then
+        t1.value42:Disconnect()
+        t1.value42 = nil
+
+        return
+    end
+    local u544
+    local u545
+    for _, player in pairs(t1.value7:GetPlayers()) do
+        local Character = player.Character
+
+        if player ~= t1.value17 and Character then
+            local HumanoidRootPart = Character:FindFirstChild("HumanoidRootPart")
+            local Humanoid = Character:FindFirstChild("Humanoid")
+
+            if HumanoidRootPart and (Humanoid and Humanoid.Health > 0) then
+                local v551, v552 = t1.value16:WorldToViewportPoint(HumanoidRootPart.Position)
+
+                if v552 and (Vector2.new(t1.value19.X, t1.value19.Y) - Vector2.new(v551.X, v551.Y)).Magnitude < 100 then
+                    u544 = HumanoidRootPart
+                    u545 = Humanoid
+                end
+            end
+        end
+    end
+    if not u544 or not u545 then
+        return
+    end
+    t1.value42 = t1.value5.Heartbeat:Connect(function()
+        if not u544.Parent or u545.Health <= 0 then
+            t1.value42:Disconnect()
+            t1.value42 = nil
+
+            return
+        end
+
+        t1.value92(nil, u544.Position, false, t1.value79.Misc.LockOnPrecision)
+    end)
+end
+})
+v59:openpage()
+for _, player in pairs(t1.value7:GetPlayers()) do
+    v55(player)
+end
+t1.value7.PlayerAdded:Connect(v55)
+t1.value7.PlayerRemoving:Connect(function(player)
+    local v554 = t1.value26[player]
+
+    t1.value81(v554)
+
+    local v555 = t1.value25[player]
+
+    t1.value81(v555)
+    t1.value26[player] = {}
+    t1.value25[player] = {}
+end)
+t1.value113(true)
+if t1.value17.Character then
+    v52(t1.value17.Character)
+end
+t1.value17.CharacterAdded:Connect(v52)
+Thrown.DescendantAdded:Connect(t1.value132)
+Terrain.DescendantAdded:Connect(t1.value132)
+t1.value6:GetPropertyChangedSignal("GlobalShadows"):Connect(function()
+    t1.value6.GlobalShadows = not t1.value79.Visuals.NoShadows
+end)
+t1.value17:GetAttributeChangedSignal("S_AutoUnequip"):Connect(function()
+    t1.value17:GetAttribute("S_AutoUnequip")
+end)
+t1.value3.InputBegan:Connect(function(input, gameProcessed)
+    if gameProcessed then
+        return
+    end
+
+    local v558 = input.KeyCode == t1.value58
+
+    if v558 then
+        v558 = not t1.value3:IsKeyDown(t1.value61)
+
+        if v558 then
+            v558 = not t1.value3:IsKeyDown(t1.value63)
+
+            if v558 then
+                v558 = t1.value79.Misc.NoDashEndLag
+
+                if v558 then
+                    v558 = not t1.value3:IsKeyDown(t1.value60) and t1.value47:FindFirstChild("UsedDash")
+                end
+            end
+        end
+    end
+
+    if v558 then
+        v51()
+    end
+end)
+t1.value5.Heartbeat:Connect(function()
+    if t1.value48 and t1.value52 then
+        t1.value48.AutoRotate = false
+    end
+end)
+local value1 = t1.value1
+local v123 = "Please Join Our Discord Server! <font color=\"rgb(142,187,255)\">" .. t1.value9 .. "</font>"
+value1({
+	Title = "KittyWare",
+	Description = v123
+})
