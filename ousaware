@@ -1819,7 +1819,7 @@ function t1.value135(p115, p116, p117)
             local v353 = t1.value96(p117)
 
             value1({
-				Title = "KittyWare",
+				Title = "Ousa.ware",
 				Description = v352,
 				Image = v353
 			})
@@ -1976,7 +1976,7 @@ local _Color3 = Color3
 local new = v4.new
 local v58 = _Color3.fromRGB(142, 187, 255)
 t1.value138 = new(v4, {
-	name = "KittyWare 1.0.7",
+	name = "Ousa.ware 6.7",
 	accent = v58,
 	textsize = 13
 })
@@ -2120,7 +2120,7 @@ v63:section({
 	size = 250,
 	pointer = "Config Section"
 }):configloader({
-	folder = "KittyWare"
+	folder = "Ousa.ware"
 })
 local toggle = v64.toggle
 local AutoblockEnabled = t1.value79.Autoblock.Enabled
@@ -3118,7 +3118,7 @@ v79:button({
         end
         if not v516 then
             t1.value1({
-					Title = "KittyWare",
+					Title = "Ousa.ware",
 					Description = "Fling target isn't on the server"
 				})
 
